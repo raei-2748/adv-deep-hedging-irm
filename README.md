@@ -67,6 +67,65 @@ pip install -r requirements.txt
 python experiment.py
 ```
 
+## 🚀 **Hydra Configuration Management**
+
+This project uses Hydra for advanced configuration management and experiment tracking.
+
+### **Basic Usage:**
+
+```bash
+# Run with default configuration
+python src/deephedge/train.py
+
+# Override parameters from command line
+python src/deephedge/train.py experiment.seed=123 training.gan.num_epochs=200
+
+# Run with different configuration
+python src/deephedge/train.py experiment.name=quick_test training.hedger.num_episodes=100
+```
+
+### **Configuration Overrides:**
+
+```bash
+# Change model architecture
+python src/deephedge/train.py model.gan.hidden_dim=256 model.hedger.hidden_dim=256
+
+# Adjust training parameters
+python src/deephedge/train.py training.gan.batch_size=128 training.gan.lr_generator=0.0001
+
+# Modify environment settings
+python src/deephedge/train.py environment.transaction_cost=0.0005 environment.initial_capital=200000
+
+# Change data settings
+python src/deephedge/train.py data.start_date=2020-01-01 data.end_date=2023-12-31
+```
+
+### **Multi-Run Experiments:**
+
+```bash
+# Run with multiple seeds for statistical testing
+python src/deephedge/train.py -m experiment.seed=42,43,44,45,46
+
+# Sweep over learning rates
+python src/deephedge/train.py -m training.gan.lr_generator=0.0001,0.0002,0.0005
+
+# Grid search over model parameters
+python src/deephedge/train.py -m model.gan.hidden_dim=64,128,256 model.hedger.hidden_dim=64,128,256
+```
+
+### **Configuration Structure:**
+
+The configuration is organized in `configs/base.yaml`:
+
+- **experiment**: Experiment metadata and settings
+- **data**: Data loading and preprocessing parameters
+- **model**: Model architecture configurations
+- **training**: Training hyperparameters
+- **environment**: Trading environment settings
+- **risk**: Risk metrics and thresholds
+- **logging**: Logging and output settings
+- **deterministic**: Reproducibility settings
+
 ## 🔒 Deterministic Reproducibility
 
 This experiment uses comprehensive deterministic seed control to ensure reproducible results:
@@ -91,6 +150,64 @@ DETERMINISTIC_MODE = True
 CUDA_DETERMINISTIC = True
 CUDA_BENCHMARK = False
 ```
+
+## 📊 **Phase 0.5: Logging, Metrics & Experiment Tracking**
+
+This project implements comprehensive experiment tracking across multiple layers:
+
+### **Layer 1: Code Layer (Python logging + loguru)**
+- **Tooling**: Python `logging` + `loguru` for enhanced logging
+- **Key Items Logged**: 
+  - Git commit SHA for reproducibility
+  - Docker image hash (if applicable)
+  - Configuration hash for deterministic runs
+  - Device information (CUDA/CPU)
+  - Deterministic settings
+
+### **Layer 2: Metrics Layer (Weights & Biases)**
+- **Tooling**: Weights & Biases for experiment tracking
+- **Key Items Logged**:
+  - GAN loss curves (D_loss, G_loss)
+  - Hedger training metrics (CVaR95, turnover)
+  - Evaluation results with CVaR comparisons
+  - Real-time metric tracking
+
+### **Layer 3: Visuals Layer (Matplotlib + PNG artifacts)**
+- **Tooling**: Matplotlib with PNG output, uploaded as artifacts
+- **Key Items Logged**:
+  - Training loss curves
+  - CVaR comparison bar charts
+  - P&L traces for each crash period
+  - Cumulative performance plots
+
+### **Layer 4: CLI Layer (train.py with argparse)**
+- **Tooling**: Hydra-powered CLI with quick overrides
+- **Key Items Logged**:
+  - Configuration overrides via command line
+  - Multi-run experiment support
+  - Automatic experiment naming and tagging
+
+### **Usage Examples:**
+
+```bash
+# Basic run with full logging
+python -m src.deephedge.train
+
+# Run with W&B tracking (requires wandb login)
+python -m src.deephedge.train logging.wandb_project=my_project
+
+# Override parameters with logging
+python -m src.deephedge.train training.gan.num_epochs=200 experiment.seed=123
+
+# Multi-run experiment for statistical testing
+python -m src.deephedge.train -m experiment.seed=42,43,44,45,46
+```
+
+### **Generated Artifacts:**
+- **Logs**: Timestamped log files in `runs/` directory
+- **Plots**: Training curves and CVaR comparisons as PNG files
+- **Configs**: Saved experiment configurations
+- **W&B**: Real-time experiment tracking and visualization
 
 ## Experiment Flow
 

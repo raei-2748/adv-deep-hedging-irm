@@ -1,25 +1,19 @@
-# Deep Hedging Experiment Configuration
-defaults:
-  - _self_
-
 experiment:
   name: gan_vs_gbm_deep_hedging
   seed: 42
-  device: cuda  # or cpu
-
+  device: cuda
 data:
-  source: synthetic  # options: synthetic, real
+  source: synthetic
   path: data/raw/sp500.csv
   start_date: '2015-01-01'
   end_date: '2025-01-01'
-  ticker: 'SPY'
-  interval: '1d'
-  resample_freq: '8T'  # 8-minute bars
-
+  ticker: SPY
+  interval: 1d
+  resample_freq: 8T
 model:
   gan:
     input_dim: 10
-    hidden_dim: 128  # Increased from 64
+    hidden_dim: 128
     sequence_length: 60
     num_layers: 2
     dropout: 0.2
@@ -27,51 +21,43 @@ model:
     adv_lambda: 0.7
     lr_generator: 0.0002
     lr_discriminator: 0.0002
-  
   hedger:
     state_dim: 10
-    hidden_dim: 128  # Increased from 64
+    hidden_dim: 128
     sequence_length: 60
     num_layers: 2
     dropout: 0.2
-    lr: 3e-4
+    lr: 0.0003
     entropy_coef: 0.01
-
 training:
   gan:
-    num_epochs: 100
-    batch_size: 64  # Increased from 32
+    num_epochs: 5
+    batch_size: 64
     cvar_alpha: 0.95
-  
   hedger:
-    num_episodes: 1000
+    num_episodes: 10
     lr: 0.001
     transaction_cost: 0.0001
-
 environment:
   initial_capital: 100000
   transaction_cost: 0.0001
   episode_length: 60
   position_scale: 1000
-
 risk:
   cvar_confidence: 0.95
   risk_free_rate: 0.02
   volatility_window: 20
-
 logging:
   log_level: INFO
   wandb_project: deep_hedging
-  log_dir: 'runs'
+  log_dir: runs
   save_models: true
   plot_results: true
   plot_dpi: 300
-
-# Deterministic settings
 deterministic:
   torch_seed: 42
   numpy_seed: 42
   python_seed: 42
   deterministic_mode: true
   cuda_deterministic: true
-  cuda_benchmark: false 
+  cuda_benchmark: false

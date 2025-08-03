@@ -1,0 +1,31 @@
+2025-08-03 14:59:15 | INFO     | src.deephedge.utils.logger:log_experiment_start:100 - ============================================================
+2025-08-03 14:59:15 | INFO     | src.deephedge.utils.logger:log_experiment_start:101 - EXPERIMENT START
+2025-08-03 14:59:15 | INFO     | src.deephedge.utils.logger:log_experiment_start:102 - ============================================================
+2025-08-03 14:59:15 | INFO     | src.deephedge.utils.logger:log_experiment_start:105 - Experiment Name: gan_vs_gbm_deep_hedging
+2025-08-03 14:59:15 | INFO     | src.deephedge.utils.logger:log_experiment_start:106 - Seed: 42
+2025-08-03 14:59:15 | INFO     | src.deephedge.utils.logger:log_experiment_start:107 - Device: cuda
+2025-08-03 14:59:15 | INFO     | src.deephedge.utils.logger:log_experiment_start:112 - Git Commit SHA: 3c3ce0448ffc2da52cb2b565b1064277a45eff31
+2025-08-03 14:59:15 | INFO     | src.deephedge.utils.logger:log_experiment_start:113 - Docker Image Hash: not-docker
+2025-08-03 14:59:15 | INFO     | src.deephedge.utils.logger:log_experiment_start:119 - Config Hash: 60bde9b8f3c80d0881f20763809a4e98
+2025-08-03 14:59:15 | INFO     | src.deephedge.utils.logger:log_experiment_start:130 - CUDA not available, using CPU
+2025-08-03 14:59:15 | INFO     | src.deephedge.utils.logger:log_experiment_start:133 - Deterministic Mode: True
+2025-08-03 14:59:15 | INFO     | src.deephedge.utils.logger:log_experiment_start:134 - CUDA Deterministic: True
+2025-08-03 14:59:15 | INFO     | src.deephedge.utils.logger:log_experiment_start:136 - ============================================================
+2025-08-03 14:59:15 | INFO     | __main__:main:241 - Loading market data...
+2025-08-03 14:59:43 | INFO     | __main__:main:253 - Training GAN...
+2025-08-03 14:59:44 | INFO     | __main__:main:264 - Training hedger...
+2025-08-03 14:59:44 | INFO     | __main__:main:268 - Creating training curves...
+2025-08-03 14:59:45 | INFO     | src.deephedge.utils.logger:log_experiment_end:189 - ============================================================
+2025-08-03 14:59:45 | INFO     | src.deephedge.utils.logger:log_experiment_end:190 - EXPERIMENT COMPLETED
+2025-08-03 14:59:45 | INFO     | src.deephedge.utils.logger:log_experiment_end:191 - ============================================================
+2025-08-03 14:59:45 | INFO     | src.deephedge.utils.logger:log_experiment_end:192 - Duration: 30.37 seconds
+2025-08-03 14:59:45 | INFO     | src.deephedge.utils.logger:log_experiment_end:195 - Final Metrics:
+2025-08-03 14:59:45 | INFO     | src.deephedge.utils.logger:log_experiment_end:197 -   gan_metrics_count: 5
+2025-08-03 14:59:45 | INFO     | src.deephedge.utils.logger:log_experiment_end:197 -   hedger_metrics_count: 10
+2025-08-03 14:59:45 | INFO     | src.deephedge.utils.logger:log_experiment_end:197 -   evaluation_periods: 0
+2025-08-03 14:59:45 | INFO     | src.deephedge.utils.logger:log_experiment_end:197 -   final_gan_d_loss: 1.3860076665878296
+2025-08-03 14:59:45 | INFO     | src.deephedge.utils.logger:log_experiment_end:197 -   final_gan_g_loss: 0.6840521693229675
+2025-08-03 14:59:45 | INFO     | src.deephedge.utils.logger:log_experiment_end:197 -   final_hedger_reward: -7.466210034600467
+2025-08-03 14:59:45 | INFO     | src.deephedge.utils.logger:log_experiment_end:197 -   final_hedger_cvar: 7.446631069414345
+2025-08-03 14:59:45 | INFO     | src.deephedge.utils.logger:log_experiment_end:199 - ============================================================
+2025-08-03 14:59:45 | INFO     | __main__:main:286 - Training completed!

@@ -419,7 +419,7 @@ def main():
     experiment.run_experiment()
     
     # Plot results
-    experiment.plot_results()
+    # experiment.plot_results()
     
     # Print summary
     print("\n" + "=" * 60)
