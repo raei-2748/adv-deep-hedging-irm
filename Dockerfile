@@ -1,4 +1,4 @@
-# Dockerfile for deep hedging project
+# Dockerfile for deep hedging project with deterministic dependencies
 FROM python:3.9-slim
 
 # Set working directory
@@ -10,9 +10,14 @@ RUN apt-get update && apt-get install -y \
     g++ \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for better caching
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Install pip-tools
+RUN python -m pip install --no-cache-dir pip-tools
+
+# Copy requirements files
+COPY requirements.in requirements.lock ./
+
+# Install dependencies from lockfile for deterministic builds
+RUN pip-sync requirements.lock
 
 # Copy project files
 COPY . .
