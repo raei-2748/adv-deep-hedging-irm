@@ -1,0 +1,56 @@
+# Base configuration for deep hedging experiments
+# YAML configs (Hydra-ready later)
+
+# Data configuration
+data:
+  start_date: '2015-01-01'
+  end_date: '2025-01-01'
+  ticker: 'SPY'
+  interval: '1d'
+  resample_freq: '8T'  # 8-minute bars
+
+# Model configuration
+models:
+  gan:
+    input_dim: 10
+    hidden_dim: 64
+    sequence_length: 60
+    num_layers: 2
+    dropout: 0.2
+  
+  actor_critic:
+    state_dim: 10
+    hidden_dim: 64
+    sequence_length: 60
+    num_layers: 2
+    dropout: 0.2
+
+# Training configuration
+training:
+  gan:
+    num_epochs: 100
+    batch_size: 32
+    lr_generator: 0.0002
+    lr_discriminator: 0.0002
+  
+  hedger:
+    num_episodes: 1000
+    lr: 0.001
+    transaction_cost: 0.0001
+
+# Environment configuration
+environment:
+  initial_capital: 100000
+  transaction_cost: 0.0001
+  episode_length: 60
+
+# Risk metrics
+risk:
+  cvar_confidence: 0.95
+  risk_free_rate: 0.02
+
+# Logging and output
+output:
+  log_dir: 'runs'
+  save_models: true
+  plot_results: true 
