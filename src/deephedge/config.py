@@ -55,9 +55,13 @@ class ExperimentConfig:
     SYNTHETIC_SIGMA = 0.15  # Annual volatility
     SYNTHETIC_INITIAL_PRICE = 100
     
-    # Random Seeds
+    # Random Seeds and Deterministic Settings
     TORCH_SEED = 42
     NUMPY_SEED = 42
+    PYTHON_SEED = 42
+    DETERMINISTIC_MODE = True
+    CUDA_DETERMINISTIC = True
+    CUDA_BENCHMARK = False
     
     # Device Configuration
     DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -105,4 +109,16 @@ class ExperimentConfig:
             'batch_size': cls.BATCH_SIZE,
             'gan_lr': cls.GAN_LR,
             'hedger_lr': cls.HEDGER_LR
+        }
+    
+    @classmethod
+    def get_seed_config(cls):
+        """Get seed and deterministic configuration"""
+        return {
+            'torch_seed': cls.TORCH_SEED,
+            'numpy_seed': cls.NUMPY_SEED,
+            'python_seed': cls.PYTHON_SEED,
+            'deterministic': cls.DETERMINISTIC_MODE,
+            'cuda_deterministic': cls.CUDA_DETERMINISTIC,
+            'cuda_benchmark': cls.CUDA_BENCHMARK
         } 

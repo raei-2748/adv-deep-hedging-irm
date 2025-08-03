@@ -46,10 +46,19 @@ class ExperimentRunner:
         market_data = self.data_manager.fetch_sp500_data()
         option_data = self.data_manager.calculate_option_prices(market_data)
         
-        # 2. Create models
+        # 2. Create models with deterministic initialization
+        self.logger.info("Creating models with deterministic initialization...")
         gan_generator = GANGenerator()
         gan_discriminator = GANDiscriminator()
         hedger = ActorCriticHedger()
+        
+        # Ensure deterministic model initialization
+        for model in [gan_generator, gan_discriminator, hedger]:
+            for param in model.parameters():
+                if param.dim() > 1:  # Weight matrices
+                    torch.nn.init.xavier_uniform_(param)
+                else:  # Bias vectors
+                    torch.nn.init.zeros_(param)
         
         # 3. Create environment
         environment = DeepHedgingEnvironment(market_data, option_data)
@@ -290,6 +299,7 @@ class ExperimentRunner:
         # Calculate metrics using the metrics module
         if len(crash_pnl) > 0:
             metrics = calculate_metrics(crash_pnl, confidence=0.95)
+            metrics['pnl_series'] = crash_pnl  # Add this line
             return metrics
         else:
             return {
@@ -382,8 +392,27 @@ def main():
     print("Deep Hedging Experiment: GAN vs Geometric Brownian Motion")
     print("=" * 60)
     
-    # Set random seed
-    set_seed(42)
+    # Import config for deterministic settings
+    from src.deephedge.config import ExperimentConfig
+    
+    # Set deterministic seeds from config
+    seed_config = ExperimentConfig.get_seed_config()
+    set_seed(
+        seed=seed_config['torch_seed'],
+        deterministic=seed_config['deterministic']
+    )
+    
+    print(f"🔒 Deterministic Mode: {seed_config['deterministic']}")
+    print(f"🎲 Torch Seed: {seed_config['torch_seed']}")
+    print(f"🎲 NumPy Seed: {seed_config['numpy_seed']}")
+    print(f"🎲 Python Seed: {seed_config['python_seed']}")
+    if torch.cuda.is_available():
+        print(f"🚀 CUDA Deterministic: {seed_config['cuda_deterministic']}")
+        print(f"🚀 CUDA Benchmark: {seed_config['cuda_benchmark']}")
+    
+    # Verify deterministic behavior
+    from src.deephedge.utils.seed import verify_determinism
+    verify_determinism()
     
     # Create and run experiment
     experiment = ExperimentRunner()

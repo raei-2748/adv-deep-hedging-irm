@@ -67,6 +67,31 @@ pip install -r requirements.txt
 python experiment.py
 ```
 
+## 🔒 Deterministic Reproducibility
+
+This experiment uses comprehensive deterministic seed control to ensure reproducible results:
+
+### **Seed Control Features:**
+- **Python random**: Controlled via `PYTHONHASHSEED`
+- **NumPy random**: Deterministic array generation
+- **PyTorch random**: CPU and GPU tensor generation
+- **CUDA operations**: Deterministic GPU kernels
+- **Model initialization**: Xavier uniform initialization
+
+### **Verification:**
+The experiment automatically verifies deterministic behavior by running multiple tests and comparing results.
+
+### **Configuration:**
+All seed settings are configurable in `src/deephedge/config.py`:
+```python
+TORCH_SEED = 42
+NUMPY_SEED = 42
+PYTHON_SEED = 42
+DETERMINISTIC_MODE = True
+CUDA_DETERMINISTIC = True
+CUDA_BENCHMARK = False
+```
+
 ## Experiment Flow
 
 1. **Data Loading**: Fetch S&P 500 data or generate synthetic data
