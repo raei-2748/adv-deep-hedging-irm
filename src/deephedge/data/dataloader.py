@@ -81,50 +81,97 @@ class DataManager:
         self.end_date = end_date
         self.pricer = BlackScholesPricer()
         
-    def fetch_sp500_data(self):
-        """Fetch S&P 500 E-mini futures data"""
+    def fetch_sp500_data(self, symbol='SPY', interval='1d', sequence_length=60):
+        """Fetch S&P 500 E-mini futures data and generate intraday paths."""
         try:
-            # Using SPY as proxy for ES futures
-            # Limit to recent data due to yfinance limitations
-            recent_start = '2024-01-01'
-            ticker = "SPY"
-            data = yf.download(ticker, start=recent_start, end=self.end_date, interval='1d', auto_adjust=False)
+            print(f"Fetching daily data for {symbol} from {self.start_date} to {self.end_date}...")
+            daily_data = yf.download(symbol, start=self.start_date, end=self.end_date, interval=interval, auto_adjust=False)
             
-            # Resample to 8-minute bars (simulate intraday data)
-            data = data.resample('8T').agg({
-                'Open': 'first',
-                'High': 'max',
-                'Low': 'min',
-                'Close': 'last',
-                'Volume': 'sum'
-            }).dropna()
+            if daily_data.empty:
+                raise ValueError("No daily data fetched. Check symbol and date range.")
             
-            # Calculate returns and volatility
-            data['Returns'] = data['Close'].pct_change()
-            data['Volatility'] = data['Returns'].rolling(20).std() * np.sqrt(252 * 24 * 7.5)  # Annualized
+            daily_data['Returns'] = daily_data['Close'].pct_change()
+            daily_data['Volatility'] = daily_data['Returns'].rolling(20).std() * np.sqrt(252) # Annualized daily volatility
             
-            return data
+            intraday_data_list = []
+            
+            print("Generating synthetic intraday data...")
+            for i in range(len(daily_data) - 1): # Iterate through days
+                current_day_close = daily_data['Close'].iloc[i]
+                next_day_close = daily_data['Close'].iloc[i+1]
+                daily_volatility = daily_data['Volatility'].iloc[i]
+                
+                if pd.isna(daily_volatility) or daily_volatility == 0:
+                    daily_volatility = 0.15 # Default volatility if not available
+                
+                # Generate intraday path using GBM, starting from current_day_close
+                # and ending approximately at next_day_close
+                intraday_path = self._generate_gbm_path(
+                    S0=current_day_close,
+                    mu=(next_day_close - current_day_close) / current_day_close, # Daily return as drift
+                    sigma=daily_volatility,
+                    dt=1/252, # Daily time step
+                    num_steps=sequence_length # Number of 8-minute bars in a day
+                )
+                
+                # Create a DataFrame for the intraday path
+                intraday_df = pd.DataFrame({
+                    'Close': intraday_path,
+                    'Open': intraday_path, # Simplified for now
+                    'High': intraday_path * (1 + np.abs(np.random.normal(0, 0.001, len(intraday_path)))),
+                    'Low': intraday_path * (1 - np.abs(np.random.normal(0, 0.001, len(intraday_path)))),
+                    'Volume': np.random.randint(100000, 1000000, len(intraday_path))
+                })
+                
+                # Assign a time index for the day
+                current_date = daily_data.index[i]
+                time_index = pd.date_range(start=current_date, periods=sequence_length, freq='8T')
+                intraday_df.index = time_index
+                
+                intraday_data_list.append(intraday_df)
+            
+            if not intraday_data_list:
+                raise ValueError("No intraday data generated.")
+                
+            combined_intraday_data = pd.concat(intraday_data_list)
+            
+            # Calculate returns and volatility for the combined intraday data
+            combined_intraday_data['Returns'] = combined_intraday_data['Close'].pct_change()
+            # Annualize based on the number of intraday steps per year (252 trading days * sequence_length)
+            combined_intraday_data['Volatility'] = combined_intraday_data['Returns'].rolling(20).std() * np.sqrt(252 * sequence_length)
+            
+            return combined_intraday_data.dropna()
+            
         except Exception as e:
-            print(f"Error fetching data: {e}")
-            print("Using synthetic data for demonstration...")
-            # Generate synthetic data for demonstration
-            return self.generate_synthetic_data()
+            print(f"Error fetching or generating data: {e}")
+            print("Using fully synthetic data for demonstration...")
+            return self.generate_fully_synthetic_data(sequence_length=sequence_length)
     
-    def generate_synthetic_data(self):
-        """Generate synthetic S&P 500 data for demonstration"""
+    def _generate_gbm_path(self, S0, mu, sigma, dt, num_steps):
+        """Generates a single Geometric Brownian Motion path."""
+        prices = np.zeros(num_steps)
+        prices[0] = S0
+        for t in range(1, num_steps):
+            shock = np.random.normal(0, 1)
+            prices[t] = prices[t-1] * np.exp((mu - 0.5 * sigma**2) * dt + sigma * np.sqrt(dt) * shock)
+        return prices
+
+    def generate_fully_synthetic_data(self, n_days=365 * 2, sequence_length=60):
+        """Generate fully synthetic S&P 500 data for demonstration (if real data fails)."""
         np.random.seed(42)
-        n_days = 365 * 2  # 2 years for faster execution
-        n_periods = int(n_days * 24 * 7.5)  # 8-minute periods
         
-        # Geometric Brownian Motion
         mu = 0.08  # Annual return
         sigma = 0.15  # Annual volatility
-        dt = 1 / (252 * 24 * 7.5)  # 8-minute periods
         
-        returns = np.random.normal(mu * dt, sigma * np.sqrt(dt), n_periods)
+        # Total number of intraday periods
+        total_periods = n_days * sequence_length
+        
+        dt_intraday = 1 / (252 * sequence_length) # Time step for intraday periods
+        
+        returns = np.random.normal(mu * dt_intraday, sigma * np.sqrt(dt_intraday), total_periods)
         prices = 100 * np.exp(np.cumsum(returns))
         
-        dates = pd.date_range(start=self.start_date, end=self.end_date, freq='8T')[:len(prices)]
+        dates = pd.date_range(start=self.start_date, periods=total_periods, freq='8T')
         
         data = pd.DataFrame({
             'Open': prices,
@@ -135,9 +182,9 @@ class DataManager:
         }, index=dates)
         
         data['Returns'] = data['Close'].pct_change()
-        data['Volatility'] = data['Returns'].rolling(20).std() * np.sqrt(252 * 24 * 7.5)
+        data['Volatility'] = data['Returns'].rolling(20).std() * np.sqrt(252 * sequence_length)
         
-        return data
+        return data.dropna()
     
     def calculate_option_prices(self, data, strike_price=None, time_to_expiry=1/252):
         """Calculate option prices and Greeks for each timestep"""

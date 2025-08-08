@@ -47,12 +47,4 @@ class ActorCriticHedger(nn.Module):
         return action, value
 
 
-class SimpleDeltaHedger:
-    """Simple delta-hedging strategy for comparison"""
-    
-    def __init__(self, transaction_cost=0.0001):
-        self.transaction_cost = transaction_cost
-    
-    def get_hedge_position(self, option_delta):
-        """Return hedge position based on option delta"""
-        return -option_delta  # Short the underlying to hedge the long option position 
+ 

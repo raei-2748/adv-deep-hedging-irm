@@ -18,10 +18,7 @@ class DeepHedgingEnvironment:
     def reset(self):
         """Reset environment to initial state"""
         self.current_step = 0
-        self.portfolio_value = 100000  # Initial capital
         self.hedge_position = 0
-        self.cumulative_pnl = 0
-        self.daily_pnl = []
         
         return self._get_state()
     
@@ -30,7 +27,7 @@ class DeepHedgingEnvironment:
         if self.current_step >= len(self.data) - 1:
             return None
         
-        # State features: [price, returns, volatility, option_price, delta, gamma, theta, hedge_position, portfolio_value, step]
+        # State features: [price, returns, volatility, option_price, delta, gamma, theta, hedge_position, step]
         current_data = self.data.iloc[self.current_step]
         current_option = self.option_data.iloc[self.current_step]
         
@@ -43,7 +40,6 @@ class DeepHedgingEnvironment:
             current_option['gamma'] * 100,  # Scaled gamma
             current_option['theta'] / 100,  # Scaled theta
             self.hedge_position,
-            self.portfolio_value / 100000,  # Normalized portfolio value
             self.current_step / 60  # Normalized step
         ])
         
@@ -71,25 +67,20 @@ class DeepHedgingEnvironment:
         # Calculate transaction costs
         new_position = action * 1000  # Scale action to position size
         position_change = new_position - self.hedge_position
-        transaction_costs = abs(position_change) * self.transaction_cost
+        transaction_costs = abs(position_change) * (self.tc_bps / 10000)
         
         # Update portfolio
         total_pnl = option_pnl + hedge_pnl - transaction_costs
-        self.portfolio_value += total_pnl
         self.hedge_position = new_position
-        self.cumulative_pnl += total_pnl
-        
-        # Store daily P&L
-        self.daily_pnl.append(total_pnl)
         
         # Move to next step
         self.current_step += 1
         
         # Check if episode is done
-        done = self.current_step >= len(self.data) - 1 or len(self.daily_pnl) >= 60
+        done = self.current_step >= len(self.data) - 1 or self.current_step >= 60 # Assuming 60 steps per episode
         
-        # Calculate reward (negative CVaR)
-        reward = -self._calculate_cvar(self.daily_pnl, confidence=0.95) if len(self.daily_pnl) > 0 else 0
+        # Calculate reward (negative total P&L for immediate feedback)
+        reward = -total_pnl
         
         next_state = self._get_state()
         
@@ -97,16 +88,7 @@ class DeepHedgingEnvironment:
             'option_pnl': option_pnl,
             'hedge_pnl': hedge_pnl,
             'transaction_costs': transaction_costs,
-            'total_pnl': total_pnl,
-            'portfolio_value': self.portfolio_value
+            'total_pnl': total_pnl
         }
     
-    def _calculate_cvar(self, returns, confidence=0.95):
-        """Calculate Conditional Value at Risk"""
-        if len(returns) < 2:
-            return 0
-        
-        returns_array = np.array(returns)
-        var = np.percentile(returns_array, (1 - confidence) * 100)
-        cvar = np.mean(returns_array[returns_array <= var])
-        return abs(cvar)  # Return absolute value for minimization 
+    # Remove _calculate_cvar as it's no longer used for immediate reward 

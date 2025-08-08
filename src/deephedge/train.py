@@ -46,32 +46,61 @@ class TrainingManager:
         self.adversarial_loss = nn.BCELoss()
         self.value_loss = nn.MSELoss()
         
-    def train_gan(self, real_data, metrics_tracker=None):
+    def train_gan(self, market_data, metrics_tracker=None):
         """Train GAN to generate worst-case price paths"""
         print("Training GAN...")
         
         num_epochs = self.config.training.gan.num_epochs
         batch_size = self.config.training.gan.batch_size
+        sequence_length = self.config.model.gan.sequence_length
+        
+        # Prepare real data for sampling
+        # We need to ensure there's enough data to sample sequences of `sequence_length`
+        # and that the data is in the correct format (price paths, not just returns)
+        # For simplicity, let's use the 'Close' prices and convert them to sequences
+        
+        # Ensure market_data has enough length for sampling
+        if len(market_data) < sequence_length:
+            print("Warning: market_data is too short for the specified sequence_length. Using synthetic data.")
+            # Fallback to fully synthetic data if real data is too short
+            market_data = self.data_manager.generate_fully_synthetic_data(sequence_length=sequence_length)
+        
+        # Extract price paths from market_data
+        price_data = market_data['Close'].values
         
         for epoch in range(num_epochs):
-            # Generate random noise
-            noise = torch.randn(batch_size, 60, 10)
+            # Sample real price paths
+            real_paths_batch = []
+            for _ in range(batch_size):
+                start_idx = np.random.randint(0, len(price_data) - sequence_length + 1)
+                real_path = price_data[start_idx : start_idx + sequence_length]
+                real_paths_batch.append(real_path)
             
-            # Generate fake price paths
-            fake_paths = self.gan_generator(noise)
+            real_paths_batch = torch.FloatTensor(real_paths_batch).unsqueeze(-1) # Shape: (batch_size, sequence_length, 1)
+            
+            # Generate random noise for generator
+            noise = torch.randn(batch_size, sequence_length, self.config.model.gan.input_dim)
+            
+            # Generate fake price changes
+            fake_price_changes = self.gan_generator(noise)
+            
+            # Convert fake price changes to fake price paths
+            # Assuming initial price for generated paths is the first price of a real path in the batch
+            initial_prices = real_paths_batch[:, 0, :]
+            fake_price_paths = initial_prices + torch.cumsum(fake_price_changes, dim=1)
             
             # Train discriminator
             self.gan_d_optimizer.zero_grad()
             
-            # Real paths - repeat real data to match batch size
-            real_batch = real_data.repeat(batch_size, 1, 1)
             real_labels = torch.ones(batch_size, 1)
-            real_outputs = self.gan_discriminator(real_batch)
+            fake_labels = torch.zeros(batch_size, 1)
+            
+            # Discriminator on real paths
+            real_outputs = self.gan_discriminator(real_paths_batch)
             d_real_loss = self.adversarial_loss(real_outputs, real_labels)
             
-            # Fake paths
-            fake_labels = torch.zeros(batch_size, 1)
-            fake_outputs = self.gan_discriminator(fake_paths.detach())
+            # Discriminator on fake paths
+            fake_outputs = self.gan_discriminator(fake_price_paths.detach())
             d_fake_loss = self.adversarial_loss(fake_outputs, fake_labels)
             
             d_loss = d_real_loss + d_fake_loss
@@ -82,7 +111,7 @@ class TrainingManager:
             self.gan_g_optimizer.zero_grad()
             
             # Generator wants to fool discriminator
-            fake_outputs = self.gan_discriminator(fake_paths)
+            fake_outputs = self.gan_discriminator(fake_price_paths)
             g_loss = self.adversarial_loss(fake_outputs, real_labels)
             
             g_loss.backward()
@@ -115,18 +144,30 @@ class TrainingManager:
             episode_pnls = []
             episode_turnover = 0
             
+            episode_log_probs = []
+            episode_values = []
+            
             while state is not None:
                 # Convert state to tensor
                 state_tensor = torch.FloatTensor(state).unsqueeze(0).unsqueeze(0)
                 
                 # Get action and value from hedger
-                action, value = self.hedger(state_tensor)
-                action = action.item()
+                action_pred, value = self.hedger(state_tensor)
+                
+                # For continuous action space, we can use a normal distribution
+                # For simplicity, let's assume action_pred is the mean of a normal distribution
+                # and we take a sample from it.
+                # Here, we'll just use the predicted action directly for now,
+                # and assume it's a direct output for the hedge position.
+                action = action_pred.item()
                 
                 # Take action in environment
                 next_state, reward, done, info = environment.step(action)
                 
                 episode_rewards.append(reward)
+                episode_values.append(value)
+                episode_log_probs.append(action_pred) # Store the predicted action for policy loss
+                
                 if 'total_pnl' in info:
                     episode_pnls.append(info['total_pnl'])
                 if 'transaction_costs' in info:
@@ -136,6 +177,9 @@ class TrainingManager:
                     break
                 
                 state = next_state
+            
+            # Update hedger at the end of the episode
+            self._update_hedger(episode_rewards, episode_values, episode_log_probs)
             
             # Calculate metrics
             avg_reward = np.mean(episode_rewards) if episode_rewards else 0
@@ -152,29 +196,42 @@ class TrainingManager:
                     turnover=episode_turnover
                 )
             
-            # Simple training: just track performance
             if episode % 100 == 0:
                 print(f"Hedger Episode {episode}: Avg Reward = {avg_reward:.4f}")
     
-    def _update_hedger(self, rewards, values, actions):
+    def _update_hedger(self, rewards, values, log_probs):
         """Update hedger networks using Actor-Critic"""
         if len(rewards) == 0:
             return
             
         # Convert to tensors
         rewards = torch.tensor(rewards, dtype=torch.float32)
-        values = torch.tensor(values, dtype=torch.float32)
-        actions = torch.tensor(actions, dtype=torch.float32)
+        values = torch.cat(values).squeeze()
+        log_probs = torch.cat(log_probs).squeeze()
+        
+        # Calculate discounted rewards
+        discounted_rewards = []
+        R = 0
+        for r in reversed(rewards):
+            R = r + 0.99 * R  # Using a discount factor of 0.99
+            discounted_rewards.insert(0, R)
+        discounted_rewards = torch.tensor(discounted_rewards, dtype=torch.float32)
         
         # Calculate advantages
-        advantages = rewards - values
+        advantages = discounted_rewards - values
         
-        # Value loss only (simplified to avoid gradient issues)
-        value_loss = self.value_loss(values, rewards)
+        # Actor loss (policy loss)
+        policy_loss = (-log_probs * advantages.detach()).mean()
+        
+        # Critic loss (value loss)
+        value_loss = self.value_loss(values, discounted_rewards)
+        
+        # Total loss
+        loss = policy_loss + 0.5 * value_loss # 0.5 is a common scaling factor for value loss
         
         # Update networks
         self.hedger_optimizer.zero_grad()
-        value_loss.backward()
+        loss.backward()
         self.hedger_optimizer.step()
 
 
@@ -251,14 +308,7 @@ def main(cfg: DictConfig):
     
     # Train GAN
     logger.info("Training GAN...")
-    sequence_length = gan_generator.sequence_length
-    returns = market_data['Returns'].dropna().values
-    if len(returns) < sequence_length:
-        returns = np.pad(returns, (0, sequence_length - len(returns)), 'constant')
-    else:
-        returns = returns[:sequence_length]
-    real_data = torch.FloatTensor(returns).unsqueeze(0).unsqueeze(-1)
-    training_manager.train_gan(real_data, metrics_tracker)
+    training_manager.train_gan(market_data, metrics_tracker)
     
     # Train hedger
     logger.info("Training hedger...")
