@@ -1,0 +1,392 @@
+[
+  {
+    "file": "runs/20250809_225739/train_market_2015-01-01_2017-12-31.csv",
+    "md5": "a80084ec5cb68d559c022e6d277c9caa",
+    "rows": 43780,
+    "cols": [
+      "Open",
+      "High",
+      "Low",
+      "Close",
+      "Volume",
+      "Returns",
+      "Volatility"
+    ],
+    "split": "train",
+    "asset": "SPY",
+    "start": "2015-01-01",
+    "end": "2017-12-31",
+    "kind": "market"
+  },
+  {
+    "file": "runs/20250809_225739/train_option_2015-01-01_2017-12-31.csv",
+    "md5": "91cc7bf047d6206136fb2457d8487c29",
+    "rows": 43780,
+    "cols": [
+      "underlying_price",
+      "option_price",
+      "delta",
+      "gamma",
+      "theta",
+      "volatility",
+      "strike"
+    ],
+    "split": "train",
+    "asset": "SPY",
+    "start": "2015-01-01",
+    "end": "2017-12-31",
+    "kind": "option"
+  },
+  {
+    "file": "runs/20250809_225739/train_market_2019-02-01_2019-11-30.csv",
+    "md5": "69e6257deb8b82d2bca4470adef69b37",
+    "rows": 0,
+    "cols": [
+      "Open",
+      "High",
+      "Low",
+      "Close",
+      "Volume",
+      "Returns",
+      "Volatility"
+    ],
+    "split": "train",
+    "asset": "SPY",
+    "start": "2019-02-01",
+    "end": "2019-11-30",
+    "kind": "market"
+  },
+  {
+    "file": "runs/20250809_225739/train_option_2019-02-01_2019-11-30.csv",
+    "md5": "806748f62a37a87497b550a21c907648",
+    "rows": 0,
+    "cols": [
+      "underlying_price",
+      "option_price",
+      "delta",
+      "gamma",
+      "theta",
+      "volatility",
+      "strike"
+    ],
+    "split": "train",
+    "asset": "SPY",
+    "start": "2019-02-01",
+    "end": "2019-11-30",
+    "kind": "option"
+  },
+  {
+    "file": "runs/20250809_225739/train_market_2021-01-01_2022-12-31.csv",
+    "md5": "69e6257deb8b82d2bca4470adef69b37",
+    "rows": 0,
+    "cols": [
+      "Open",
+      "High",
+      "Low",
+      "Close",
+      "Volume",
+      "Returns",
+      "Volatility"
+    ],
+    "split": "train",
+    "asset": "SPY",
+    "start": "2021-01-01",
+    "end": "2022-12-31",
+    "kind": "market"
+  },
+  {
+    "file": "runs/20250809_225739/train_option_2021-01-01_2022-12-31.csv",
+    "md5": "806748f62a37a87497b550a21c907648",
+    "rows": 0,
+    "cols": [
+      "underlying_price",
+      "option_price",
+      "delta",
+      "gamma",
+      "theta",
+      "volatility",
+      "strike"
+    ],
+    "split": "train",
+    "asset": "SPY",
+    "start": "2021-01-01",
+    "end": "2022-12-31",
+    "kind": "option"
+  },
+  {
+    "file": "runs/20250809_225739/valid_market_2018-01-01_2018-06-30.csv",
+    "md5": "69e6257deb8b82d2bca4470adef69b37",
+    "rows": 0,
+    "cols": [
+      "Open",
+      "High",
+      "Low",
+      "Close",
+      "Volume",
+      "Returns",
+      "Volatility"
+    ],
+    "split": "valid",
+    "asset": "SPY",
+    "start": "2018-01-01",
+    "end": "2018-06-30",
+    "kind": "market"
+  },
+  {
+    "file": "runs/20250809_225739/valid_option_2018-01-01_2018-06-30.csv",
+    "md5": "806748f62a37a87497b550a21c907648",
+    "rows": 0,
+    "cols": [
+      "underlying_price",
+      "option_price",
+      "delta",
+      "gamma",
+      "theta",
+      "volatility",
+      "strike"
+    ],
+    "split": "valid",
+    "asset": "SPY",
+    "start": "2018-01-01",
+    "end": "2018-06-30",
+    "kind": "option"
+  },
+  {
+    "file": "runs/20250809_225739/valid_market_2020-06-01_2020-12-31.csv",
+    "md5": "69e6257deb8b82d2bca4470adef69b37",
+    "rows": 0,
+    "cols": [
+      "Open",
+      "High",
+      "Low",
+      "Close",
+      "Volume",
+      "Returns",
+      "Volatility"
+    ],
+    "split": "valid",
+    "asset": "SPY",
+    "start": "2020-06-01",
+    "end": "2020-12-31",
+    "kind": "market"
+  },
+  {
+    "file": "runs/20250809_225739/valid_option_2020-06-01_2020-12-31.csv",
+    "md5": "806748f62a37a87497b550a21c907648",
+    "rows": 0,
+    "cols": [
+      "underlying_price",
+      "option_price",
+      "delta",
+      "gamma",
+      "theta",
+      "volatility",
+      "strike"
+    ],
+    "split": "valid",
+    "asset": "SPY",
+    "start": "2020-06-01",
+    "end": "2020-12-31",
+    "kind": "option"
+  },
+  {
+    "file": "runs/20250809_225739/test_covid19_market_2020-02-15_2020-04-30.csv",
+    "md5": "69e6257deb8b82d2bca4470adef69b37",
+    "rows": 0,
+    "cols": [
+      "Open",
+      "High",
+      "Low",
+      "Close",
+      "Volume",
+      "Returns",
+      "Volatility"
+    ],
+    "split": "test",
+    "window": "covid19",
+    "asset": "SPY",
+    "start": "2020-02-15",
+    "end": "2020-04-30",
+    "kind": "market"
+  },
+  {
+    "file": "runs/20250809_225739/test_covid19_option_2020-02-15_2020-04-30.csv",
+    "md5": "806748f62a37a87497b550a21c907648",
+    "rows": 0,
+    "cols": [
+      "underlying_price",
+      "option_price",
+      "delta",
+      "gamma",
+      "theta",
+      "volatility",
+      "strike"
+    ],
+    "split": "test",
+    "window": "covid19",
+    "asset": "SPY",
+    "start": "2020-02-15",
+    "end": "2020-04-30",
+    "kind": "option"
+  },
+  {
+    "file": "runs/20250809_225739/test_volmageddon_market_2018-01-15_2018-02-28.csv",
+    "md5": "69e6257deb8b82d2bca4470adef69b37",
+    "rows": 0,
+    "cols": [
+      "Open",
+      "High",
+      "Low",
+      "Close",
+      "Volume",
+      "Returns",
+      "Volatility"
+    ],
+    "split": "test",
+    "window": "volmageddon",
+    "asset": "SPY",
+    "start": "2018-01-15",
+    "end": "2018-02-28",
+    "kind": "market"
+  },
+  {
+    "file": "runs/20250809_225739/test_volmageddon_option_2018-01-15_2018-02-28.csv",
+    "md5": "806748f62a37a87497b550a21c907648",
+    "rows": 0,
+    "cols": [
+      "underlying_price",
+      "option_price",
+      "delta",
+      "gamma",
+      "theta",
+      "volatility",
+      "strike"
+    ],
+    "split": "test",
+    "window": "volmageddon",
+    "asset": "SPY",
+    "start": "2018-01-15",
+    "end": "2018-02-28",
+    "kind": "option"
+  },
+  {
+    "file": "runs/20250809_225739/test_qt18_market_2018-10-01_2018-12-31.csv",
+    "md5": "69e6257deb8b82d2bca4470adef69b37",
+    "rows": 0,
+    "cols": [
+      "Open",
+      "High",
+      "Low",
+      "Close",
+      "Volume",
+      "Returns",
+      "Volatility"
+    ],
+    "split": "test",
+    "window": "qt18",
+    "asset": "SPY",
+    "start": "2018-10-01",
+    "end": "2018-12-31",
+    "kind": "market"
+  },
+  {
+    "file": "runs/20250809_225739/test_qt18_option_2018-10-01_2018-12-31.csv",
+    "md5": "806748f62a37a87497b550a21c907648",
+    "rows": 0,
+    "cols": [
+      "underlying_price",
+      "option_price",
+      "delta",
+      "gamma",
+      "theta",
+      "volatility",
+      "strike"
+    ],
+    "split": "test",
+    "window": "qt18",
+    "asset": "SPY",
+    "start": "2018-10-01",
+    "end": "2018-12-31",
+    "kind": "option"
+  },
+  {
+    "file": "runs/20250809_225739/test_svb23_market_2023-03-01_2023-03-31.csv",
+    "md5": "69e6257deb8b82d2bca4470adef69b37",
+    "rows": 0,
+    "cols": [
+      "Open",
+      "High",
+      "Low",
+      "Close",
+      "Volume",
+      "Returns",
+      "Volatility"
+    ],
+    "split": "test",
+    "window": "svb23",
+    "asset": "SPY",
+    "start": "2023-03-01",
+    "end": "2023-03-31",
+    "kind": "market"
+  },
+  {
+    "file": "runs/20250809_225739/test_svb23_option_2023-03-01_2023-03-31.csv",
+    "md5": "806748f62a37a87497b550a21c907648",
+    "rows": 0,
+    "cols": [
+      "underlying_price",
+      "option_price",
+      "delta",
+      "gamma",
+      "theta",
+      "volatility",
+      "strike"
+    ],
+    "split": "test",
+    "window": "svb23",
+    "asset": "SPY",
+    "start": "2023-03-01",
+    "end": "2023-03-31",
+    "kind": "option"
+  },
+  {
+    "file": "runs/20250809_225739/test_hikes22_market_2022-06-01_2022-07-31.csv",
+    "md5": "69e6257deb8b82d2bca4470adef69b37",
+    "rows": 0,
+    "cols": [
+      "Open",
+      "High",
+      "Low",
+      "Close",
+      "Volume",
+      "Returns",
+      "Volatility"
+    ],
+    "split": "test",
+    "window": "hikes22",
+    "asset": "SPY",
+    "start": "2022-06-01",
+    "end": "2022-07-31",
+    "kind": "market"
+  },
+  {
+    "file": "runs/20250809_225739/test_hikes22_option_2022-06-01_2022-07-31.csv",
+    "md5": "806748f62a37a87497b550a21c907648",
+    "rows": 0,
+    "cols": [
+      "underlying_price",
+      "option_price",
+      "delta",
+      "gamma",
+      "theta",
+      "volatility",
+      "strike"
+    ],
+    "split": "test",
+    "window": "hikes22",
+    "asset": "SPY",
+    "start": "2022-06-01",
+    "end": "2022-07-31",
+    "kind": "option"
+  }
+]
