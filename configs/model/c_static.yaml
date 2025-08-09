@@ -1,0 +1,8 @@
+name: c_static
+type: baseline
+pricer:
+  type: bs
+  vol_mode: constant
+  sigma: 0.20
+
+

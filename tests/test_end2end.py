@@ -8,7 +8,8 @@ import pandas as pd
 import torch
 from src.deephedge.data.dataloader import DataManager
 from src.deephedge.models.gan import GANGenerator, GANDiscriminator
-from src.deephedge.models.actor_critic import ActorCriticHedger, SimpleDeltaHedger
+from src.deephedge.models.actor_critic import ActorCriticHedger
+from src.deephedge.models.hedge_delta import SimpleDeltaHedger
 from src.deephedge.envs.deep_hedging_env import DeepHedgingEnvironment
 from src.deephedge.utils.metrics import calculate_metrics, compare_hedgers
 
@@ -83,7 +84,7 @@ class TestEndToEnd:
     def test_environment(self):
         """Test environment functionality"""
         # Create synthetic data
-        market_data = self.data_manager.generate_synthetic_data()
+        market_data = self.data_manager.generate_fully_synthetic_data()
         option_data = self.data_manager.calculate_option_prices(market_data)
         
         # Create environment
@@ -135,7 +136,7 @@ class TestEndToEnd:
     def test_complete_pipeline(self):
         """Test complete deep hedging pipeline"""
         # 1. Load data
-        market_data = self.data_manager.generate_synthetic_data()
+        market_data = self.data_manager.generate_fully_synthetic_data()
         option_data = self.data_manager.calculate_option_prices(market_data)
         
         # 2. Create environment

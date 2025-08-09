@@ -5,6 +5,7 @@ Unit tests for Black-Scholes pricer
 import pytest
 import numpy as np
 from src.deephedge.data.dataloader import BlackScholesPricer
+from src.deephedge.utils.metrics import calculate_cvar
 
 
 class TestBlackScholesPricer:
@@ -114,6 +115,15 @@ class TestBlackScholesPricer:
         # Should be close to true volatility
         assert abs(sigma_implied - sigma_true) < 0.01
         assert 0.01 <= sigma_implied <= 2.0  # Within reasonable bounds
+
+    def test_cvar_definition_matches_protocol(self):
+        # Synthetic distribution with known left tail
+        rng = np.random.default_rng(42)
+        # Mixture: 90% N(0,1), 10% N(-5,1)
+        mix = np.where(rng.uniform(size=10000) < 0.1, rng.normal(-5, 1, 10000), rng.normal(0, 1, 10000))
+        cvar95 = calculate_cvar(mix, confidence=0.95, assume_losses_negative=True)
+        # Should be clearly negative and left-tail dominated
+        assert cvar95 < -1.0
 
 
 if __name__ == "__main__":

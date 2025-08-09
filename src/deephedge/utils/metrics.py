@@ -7,15 +7,32 @@ import pandas as pd
 from scipy import stats
 
 
-def calculate_cvar(returns, confidence=0.95):
-    """Calculate Conditional Value at Risk"""
-    if len(returns) < 2:
-        return 0
+def calculate_cvar(values, confidence: float = 0.95, assume_losses_negative: bool = True):
+    """Compute CVaR (Expected Shortfall) at given confidence for a sample.
 
-    returns_array = np.array(returns)
-    var = np.percentile(returns_array, (1 - confidence) * 100)
-    cvar = np.mean(returns_array[returns_array <= var])
-    return abs(cvar)  # Return absolute value for minimization
+    Args:
+        values: Iterable of episode-level P&L (or returns). If assume_losses_negative=True,
+                the left tail (worst outcomes) are the most negative values.
+        confidence: Confidence level for VaR/CVaR (e.g., 0.95).
+        assume_losses_negative: If True, treat smaller values as worse. If False, treat larger values as worse.
+
+    Returns:
+        cvar: The arithmetic mean of the worst (1-confidence) tail.
+    """
+    arr = np.asarray(values, dtype=float)
+    n = arr.size
+    if n == 0:
+        return 0.0
+    # Sort ascending if losses are negative; descending otherwise
+    if assume_losses_negative:
+        sorted_arr = np.sort(arr)
+    else:
+        sorted_arr = np.sort(arr)[::-1]
+
+    k = int(np.floor((1.0 - confidence) * n))
+    k = max(1, k)  # ensure at least one element in the tail
+    tail = sorted_arr[:k]
+    return float(np.mean(tail))
 
 
 def calculate_sharpe_ratio(returns, risk_free_rate=0.02):
@@ -66,7 +83,8 @@ def calculate_metrics(pnl_series, confidence=0.95):
     returns = np.diff(pnl_series) if len(pnl_series) > 1 else [0]
 
     return {
-        'cvar_95': calculate_cvar(returns, confidence),
+        # For metrics we report CVaR on episode-level P&L differences (loss negative), left-tail mean
+        'cvar_95': abs(calculate_cvar(returns, confidence, assume_losses_negative=True)),
         'mean_pnl': np.mean(pnl_series),
         'total_pnl': np.sum(pnl_series),
         'sharpe_ratio': calculate_sharpe_ratio(returns),

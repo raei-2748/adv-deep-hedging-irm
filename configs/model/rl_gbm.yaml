@@ -1,0 +1,9 @@
+name: rl_gbm
+type: rl
+train_source: gbm
+hedger:
+  hidden_dim: 128
+  sequence_length: 60
+  lr: 3e-4
+
+

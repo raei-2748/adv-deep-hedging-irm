@@ -1,0 +1,11 @@
+transaction_costs_bps: 2   # default bps for stress testing; protocol supports {0,2,10}
+apply_on: 'notional_traded' # notional traded = |Δpos| * price
+slippage:
+  enabled: false
+  model: 'none'  # or 'sqrt_impact'
+  kappa: 0.0
+financing:
+  risk_free_rate: 0.0
+hedging_frequency: 'bar'  # every bar
+
+

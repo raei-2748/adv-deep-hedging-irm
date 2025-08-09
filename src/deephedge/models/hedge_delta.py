@@ -5,9 +5,9 @@ import torch.nn as nn
 class SimpleDeltaHedger:
     """Simple delta-hedging strategy for comparison"""
 
-    def __init__(self, pricer):
+    def __init__(self, pricer=None):
         self.pricer = pricer
 
-    def get_hedge_position(self, option_delta):
+    def get_hedge_position(self, option_delta: float) -> float:
         """Return hedge position based on option delta"""
-        return -option_delta
+        return -float(option_delta)

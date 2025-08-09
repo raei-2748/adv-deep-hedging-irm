@@ -1,0 +1,14 @@
+name: rl_gan
+type: rl
+train_source: gan
+gan:
+  hidden_dim: 128
+  sequence_length: 60
+  lr_generator: 2e-4
+  lr_discriminator: 2e-4
+hedger:
+  hidden_dim: 128
+  sequence_length: 60
+  lr: 3e-4
+
+

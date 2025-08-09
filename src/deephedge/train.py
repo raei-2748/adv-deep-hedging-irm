@@ -301,9 +301,12 @@ def main(cfg: DictConfig):
     
     # Create environment with config
     environment = DeepHedgingEnvironment(
-        market_data, 
-        option_data, 
-        transaction_cost=cfg.environment.transaction_cost
+        market_data,
+        option_data,
+        transaction_cost=cfg.environment.transaction_cost,
+        initial_capital=cfg.environment.initial_capital,
+        episode_length=cfg.environment.episode_length,
+        position_scale=cfg.environment.position_scale,
     )
     
     # Train GAN

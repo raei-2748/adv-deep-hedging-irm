@@ -1,0 +1,8 @@
+name: c_dyn
+type: baseline
+pricer:
+  type: bs
+  vol_mode: realized
+  window_bars: 30
+
+

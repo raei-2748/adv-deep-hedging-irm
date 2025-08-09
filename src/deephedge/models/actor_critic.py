@@ -20,7 +20,6 @@ class ActorCriticHedger(nn.Module):
         self.actor_fc = nn.Sequential(
             nn.Linear(hidden_dim, hidden_dim),
             nn.ReLU(),
-            nn.Dropout(0.2),
             nn.Linear(hidden_dim, 1),
             nn.Tanh()  # Output position size between -1 and 1
         )
@@ -29,7 +28,6 @@ class ActorCriticHedger(nn.Module):
         self.critic_fc = nn.Sequential(
             nn.Linear(hidden_dim, hidden_dim),
             nn.ReLU(),
-            nn.Dropout(0.2),
             nn.Linear(hidden_dim, 1)
         )
         
