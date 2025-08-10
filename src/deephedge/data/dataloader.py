@@ -7,7 +7,11 @@ import pandas as pd
 import yfinance as yf
 from scipy.stats import norm
 import warnings
+import pathlib
 warnings.filterwarnings('ignore')
+
+CACHE_DIR = pathlib.Path(__file__).parent / ".cache"
+CACHE_DIR.mkdir(exist_ok=True)
 
 
 class BlackScholesPricer:
@@ -80,15 +84,37 @@ class DataManager:
         self.start_date = start_date
         self.end_date = end_date
         self.pricer = BlackScholesPricer()
+
+    def _get_cache_path(self, symbol, interval):
+        return CACHE_DIR / f"{symbol}_{self.start_date}_{self.end_date}_{interval}.pkl"
+
+    def _load_from_cache(self, symbol, interval):
+        cache_path = self._get_cache_path(symbol, interval)
+        if cache_path.exists():
+            return pd.read_pickle(cache_path)
+        return None
+
+    def _save_to_cache(self, data, symbol, interval):
+        cache_path = self._get_cache_path(symbol, interval)
+        data.to_pickle(cache_path)
         
     def fetch_sp500_data(self, symbol='SPY', interval='1d', sequence_length=60):
         """Fetch S&P 500 E-mini futures data and generate intraday paths."""
+        # Try to load from cache first
+        cached_data = self._load_from_cache(symbol, interval)
+        if cached_data is not None:
+            print("Loaded data from cache.")
+            return cached_data
+
         try:
             print(f"Fetching daily data for {symbol} from {self.start_date} to {self.end_date}...")
             daily_data = yf.download(symbol, start=self.start_date, end=self.end_date, interval=interval, auto_adjust=False)
             
             if daily_data.empty:
                 raise ValueError("No daily data fetched. Check symbol and date range.")
+
+            # Save to cache
+            self._save_to_cache(daily_data, symbol, interval)
             
             daily_data['Returns'] = daily_data['Close'].pct_change()
             daily_data['Volatility'] = daily_data['Returns'].rolling(20).std() * np.sqrt(252) # Annualized daily volatility
@@ -217,4 +243,13 @@ class DataManager:
         option_df = pd.DataFrame(option_data)
         # Set the index to match the original data
         option_df.set_index('timestamp', inplace=True)
-        return option_df 
+        return option_df
+
+    def get_data(self, synthetic=False):
+        if synthetic:
+            market_data = self.generate_fully_synthetic_data()
+        else:
+            market_data = self.fetch_sp500_data()
+        
+        option_data = self.calculate_option_prices(market_data)
+        return market_data, option_data 

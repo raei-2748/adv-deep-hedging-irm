@@ -189,3 +189,22 @@ def calculate_performance_metrics(pnl_series):
     }
 
     return metrics
+
+import numpy as np
+from src.deephedge.utils.metrics import calculate_cvar
+
+def paired_bootstrap_cvar_diff(pnl_a, pnl_b, alpha=0.95, B=10_000, seed=0):
+    rng = np.random.default_rng(seed)
+    pnl_a = np.asarray(pnl_a); pnl_b = np.asarray(pnl_b)
+    assert len(pnl_a) == len(pnl_b)
+    n = len(pnl_a)
+    diffs = []
+    for _ in range(B):
+        idx = rng.integers(0, n, size=n)
+        cvar_a = calculate_cvar(pnl_a[idx], confidence=alpha, assume_losses_negative=True)
+        cvar_b = calculate_cvar(pnl_b[idx], confidence=alpha, assume_losses_negative=True)
+        diffs.append(cvar_a - cvar_b)  # H0: diff = 0; H1: diff < 0
+    diffs = np.array(diffs)
+    p_one_sided = (diffs < 0).mean()
+    ci = (np.percentile(diffs, 2.5), np.percentile(diffs, 97.5))
+    return {"p_value_one_sided": p_one_sided, "ci_95": ci, "mean_diff": diffs.mean()}
