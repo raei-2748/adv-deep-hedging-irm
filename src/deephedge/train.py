@@ -16,6 +16,7 @@ from .envs.deep_hedging_env import DeepHedgingEnvironment
 from .utils.seed import set_seed, verify_determinism
 from .utils.logger import setup_logger, log_experiment_start, log_experiment_end
 from .utils.metrics_tracker import MetricsTracker
+from loguru import logger
 
 
 class TrainingManager:
@@ -48,7 +49,7 @@ class TrainingManager:
         
     def train_gan(self, market_data, metrics_tracker=None):
         """Train GAN to generate worst-case price paths"""
-        print("Training GAN...")
+        logger.info("Training GAN...")
         
         num_epochs = self.config.training.gan.num_epochs
         batch_size = self.config.training.gan.batch_size
@@ -130,11 +131,11 @@ class TrainingManager:
                 )
             
             if epoch % 20 == 0:
-                print(f"GAN Epoch {epoch}: D_loss={d_loss.item():.4f}, G_loss={g_loss.item():.4f}")
+                logger.info(f"GAN Epoch {epoch}: D_loss={d_loss.item():.4f}, G_loss={g_loss.item():.4f}")
     
     def train_hedger(self, environment, metrics_tracker=None):
         """Train the hedger using Actor-Critic"""
-        print("Training Hedger...")
+        logger.info("Training Hedger...")
         
         num_episodes = self.config.training.hedger.num_episodes
         
@@ -197,7 +198,7 @@ class TrainingManager:
                 )
             
             if episode % 100 == 0:
-                print(f"Hedger Episode {episode}: Avg Reward = {avg_reward:.4f}")
+                logger.info(f"Hedger Episode {episode}: Avg Reward = {avg_reward:.4f}")
     
     def _update_hedger(self, rewards, values, log_probs):
         """Update hedger networks using Actor-Critic"""
