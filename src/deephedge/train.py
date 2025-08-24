@@ -60,14 +60,27 @@ class TrainingManager:
         # and that the data is in the correct format (price paths, not just returns)
         # For simplicity, let's use the 'Close' prices and convert them to sequences
         
-        # Ensure market_data has enough length for sampling
-        if len(market_data) < sequence_length:
-            print("Warning: market_data is too short for the specified sequence_length. Using synthetic data.")
-            # Fallback to fully synthetic data if real data is too short
-            market_data = self.data_manager.generate_fully_synthetic_data(sequence_length=sequence_length)
-        
+        # Validate market data and handle missing values
+        if (
+            market_data is None
+            or "Close" not in market_data.columns
+        ):
+            print("Warning: market data missing or lacks 'Close'. Using synthetic data.")
+            market_data = self.data_manager.generate_fully_synthetic_data(
+                sequence_length=sequence_length
+            )
+        else:
+            market_data = market_data.dropna(subset=["Close"])
+            if len(market_data) < sequence_length:
+                print(
+                    "Warning: market_data is too short for the specified sequence_length. Using synthetic data."
+                )
+                market_data = self.data_manager.generate_fully_synthetic_data(
+                    sequence_length=sequence_length
+                )
+
         # Extract price paths from market_data
-        price_data = market_data['Close'].values
+        price_data = market_data["Close"].values
         
         for epoch in range(num_epochs):
             # Sample real price paths
@@ -87,8 +100,11 @@ class TrainingManager:
             
             # Convert fake price changes to fake price paths
             # Assuming initial price for generated paths is the first price of a real path in the batch
-            initial_prices = real_paths_batch[:, 0, :]
+            initial_prices = real_paths_batch[:, 0, :].unsqueeze(1)
             fake_price_paths = initial_prices + torch.cumsum(fake_price_changes, dim=1)
+            # Ensure shapes match between real and fake paths
+            if fake_price_paths.shape != real_paths_batch.shape:
+                fake_price_paths = fake_price_paths.reshape_as(real_paths_batch)
             
             # Train discriminator
             self.gan_d_optimizer.zero_grad()
