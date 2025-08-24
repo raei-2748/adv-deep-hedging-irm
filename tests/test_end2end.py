@@ -6,12 +6,14 @@ import pytest
 import numpy as np
 import pandas as pd
 import torch
+from omegaconf import OmegaConf
 from src.deephedge.data.dataloader import DataManager
 from src.deephedge.models.gan import GANGenerator, GANDiscriminator
 from src.deephedge.models.actor_critic import ActorCriticHedger
 from src.deephedge.models.hedge_delta import SimpleDeltaHedger
 from src.deephedge.envs.deep_hedging_env import DeepHedgingEnvironment
 from src.deephedge.utils.metrics import calculate_metrics, compare_hedgers
+from src.deephedge.train import TrainingManager
 
 
 class TestEndToEnd:
@@ -32,8 +34,8 @@ class TestEndToEnd:
     
     def test_data_loading(self):
         """Test data loading and option pricing"""
-        # Load data
-        market_data = self.data_manager.fetch_sp500_data()
+        # Load data (use synthetic to avoid external dependencies)
+        market_data = self.data_manager.generate_fully_synthetic_data()
         option_data = self.data_manager.calculate_option_prices(market_data)
         
         # Check data integrity
@@ -189,13 +191,51 @@ class TestEndToEnd:
         if len(ai_pnl) > 0 and len(delta_pnl) > 0:
             ai_metrics = calculate_metrics(ai_pnl)
             delta_metrics = calculate_metrics(delta_pnl)
-            
+
             # Both should have valid metrics
             assert 'cvar_95' in ai_metrics
             assert 'cvar_95' in delta_metrics
             assert 'mean_pnl' in ai_metrics
             assert 'mean_pnl' in delta_metrics
     
+    def test_minimal_training_run(self):
+        """Minimal training run ensuring training loop completes even with missing data."""
+        # Create synthetic market data with a missing value
+        market_data = self.data_manager.generate_fully_synthetic_data(n_days=5, sequence_length=10)
+        market_data.iloc[0, market_data.columns.get_loc('Close')] = np.nan
+        clean_market_data = market_data.dropna()
+        option_data = self.data_manager.calculate_option_prices(clean_market_data)
+
+        # Minimal configuration for quick training
+        config = OmegaConf.create({
+            "model": {
+                "gan": {
+                    "lr_generator": 0.001,
+                    "lr_discriminator": 0.001,
+                    "sequence_length": 10,
+                    "input_dim": 5,
+                },
+                "hedger": {"lr": 0.001},
+            },
+            "training": {
+                "gan": {"num_epochs": 1, "batch_size": 2},
+                "hedger": {"num_episodes": 1},
+            },
+        })
+
+        manager = TrainingManager(
+            self.data_manager,
+            GANGenerator(input_dim=5, sequence_length=10),
+            GANDiscriminator(sequence_length=10),
+            self.hedger,
+            config,
+        )
+
+        # Training should complete without raising errors
+        manager.train_gan(market_data)
+        env = DeepHedgingEnvironment(clean_market_data, option_data)
+        manager.train_hedger(env)
+
     def test_model_saving_loading(self):
         """Test model saving and loading"""
         import tempfile
