@@ -1,0 +1,433 @@
+execution_time:
+  duration_seconds: 47.42444
+  end: '2025-08-24T12:45:48.877807'
+  start: '2025-08-24T12:45:01.453369'
+experiments:
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.0"
+    "data.resample_freq=1T" "training.hedger.cvar_alpha=0.95" "experiment.seed=42"
+    "hydra.run.dir=runs/phase1_test/rl_gan_tc0bps_freq1min_cvar95"
+  end_time: '2025-08-24T12:45:04.623881'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.0
+  - data.resample_freq=1T
+  - training.hedger.cvar_alpha=0.95
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc0bps_freq1min_cvar95
+  run_id: rl_gan_tc0bps_freq1min_cvar95
+  start_time: '2025-08-24T12:45:01.454212'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.0"
+    "data.resample_freq=1T" "training.hedger.reward_type=mean_variance" "training.hedger.risk_aversion=1.0"
+    "experiment.seed=42" "hydra.run.dir=runs/phase1_test/rl_gan_tc0bps_freq1min_mean_variance"
+  end_time: '2025-08-24T12:45:07.260629'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.0
+  - data.resample_freq=1T
+  - training.hedger.reward_type=mean_variance
+  - training.hedger.risk_aversion=1.0
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc0bps_freq1min_mean_variance
+  run_id: rl_gan_tc0bps_freq1min_mean_variance
+  start_time: '2025-08-24T12:45:04.624036'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.0"
+    "data.resample_freq=8T" "training.hedger.cvar_alpha=0.95" "experiment.seed=42"
+    "hydra.run.dir=runs/phase1_test/rl_gan_tc0bps_freq8min_cvar95"
+  end_time: '2025-08-24T12:45:09.897831'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.0
+  - data.resample_freq=8T
+  - training.hedger.cvar_alpha=0.95
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc0bps_freq8min_cvar95
+  run_id: rl_gan_tc0bps_freq8min_cvar95
+  start_time: '2025-08-24T12:45:07.260802'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.0"
+    "data.resample_freq=8T" "training.hedger.reward_type=mean_variance" "training.hedger.risk_aversion=1.0"
+    "experiment.seed=42" "hydra.run.dir=runs/phase1_test/rl_gan_tc0bps_freq8min_mean_variance"
+  end_time: '2025-08-24T12:45:12.641632'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.0
+  - data.resample_freq=8T
+  - training.hedger.reward_type=mean_variance
+  - training.hedger.risk_aversion=1.0
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc0bps_freq8min_mean_variance
+  run_id: rl_gan_tc0bps_freq8min_mean_variance
+  start_time: '2025-08-24T12:45:09.897999'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.0"
+    "data.resample_freq=30T" "training.hedger.cvar_alpha=0.95" "experiment.seed=42"
+    "hydra.run.dir=runs/phase1_test/rl_gan_tc0bps_freq30min_cvar95"
+  end_time: '2025-08-24T12:45:15.183665'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.0
+  - data.resample_freq=30T
+  - training.hedger.cvar_alpha=0.95
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc0bps_freq30min_cvar95
+  run_id: rl_gan_tc0bps_freq30min_cvar95
+  start_time: '2025-08-24T12:45:12.641802'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.0"
+    "data.resample_freq=30T" "training.hedger.reward_type=mean_variance" "training.hedger.risk_aversion=1.0"
+    "experiment.seed=42" "hydra.run.dir=runs/phase1_test/rl_gan_tc0bps_freq30min_mean_variance"
+  end_time: '2025-08-24T12:45:17.894663'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.0
+  - data.resample_freq=30T
+  - training.hedger.reward_type=mean_variance
+  - training.hedger.risk_aversion=1.0
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc0bps_freq30min_mean_variance
+  run_id: rl_gan_tc0bps_freq30min_mean_variance
+  start_time: '2025-08-24T12:45:15.183817'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.0002"
+    "data.resample_freq=1T" "training.hedger.cvar_alpha=0.95" "experiment.seed=42"
+    "hydra.run.dir=runs/phase1_test/rl_gan_tc2bps_freq1min_cvar95"
+  end_time: '2025-08-24T12:45:20.523642'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.0002
+  - data.resample_freq=1T
+  - training.hedger.cvar_alpha=0.95
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc2bps_freq1min_cvar95
+  run_id: rl_gan_tc2bps_freq1min_cvar95
+  start_time: '2025-08-24T12:45:17.894819'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.0002"
+    "data.resample_freq=1T" "training.hedger.reward_type=mean_variance" "training.hedger.risk_aversion=1.0"
+    "experiment.seed=42" "hydra.run.dir=runs/phase1_test/rl_gan_tc2bps_freq1min_mean_variance"
+  end_time: '2025-08-24T12:45:23.148227'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.0002
+  - data.resample_freq=1T
+  - training.hedger.reward_type=mean_variance
+  - training.hedger.risk_aversion=1.0
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc2bps_freq1min_mean_variance
+  run_id: rl_gan_tc2bps_freq1min_mean_variance
+  start_time: '2025-08-24T12:45:20.523803'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.0002"
+    "data.resample_freq=8T" "training.hedger.cvar_alpha=0.95" "experiment.seed=42"
+    "hydra.run.dir=runs/phase1_test/rl_gan_tc2bps_freq8min_cvar95"
+  end_time: '2025-08-24T12:45:25.751379'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.0002
+  - data.resample_freq=8T
+  - training.hedger.cvar_alpha=0.95
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc2bps_freq8min_cvar95
+  run_id: rl_gan_tc2bps_freq8min_cvar95
+  start_time: '2025-08-24T12:45:23.148396'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.0002"
+    "data.resample_freq=8T" "training.hedger.reward_type=mean_variance" "training.hedger.risk_aversion=1.0"
+    "experiment.seed=42" "hydra.run.dir=runs/phase1_test/rl_gan_tc2bps_freq8min_mean_variance"
+  end_time: '2025-08-24T12:45:28.213083'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.0002
+  - data.resample_freq=8T
+  - training.hedger.reward_type=mean_variance
+  - training.hedger.risk_aversion=1.0
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc2bps_freq8min_mean_variance
+  run_id: rl_gan_tc2bps_freq8min_mean_variance
+  start_time: '2025-08-24T12:45:25.751520'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.0002"
+    "data.resample_freq=30T" "training.hedger.cvar_alpha=0.95" "experiment.seed=42"
+    "hydra.run.dir=runs/phase1_test/rl_gan_tc2bps_freq30min_cvar95"
+  end_time: '2025-08-24T12:45:30.829861'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.0002
+  - data.resample_freq=30T
+  - training.hedger.cvar_alpha=0.95
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc2bps_freq30min_cvar95
+  run_id: rl_gan_tc2bps_freq30min_cvar95
+  start_time: '2025-08-24T12:45:28.213239'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.0002"
+    "data.resample_freq=30T" "training.hedger.reward_type=mean_variance" "training.hedger.risk_aversion=1.0"
+    "experiment.seed=42" "hydra.run.dir=runs/phase1_test/rl_gan_tc2bps_freq30min_mean_variance"
+  end_time: '2025-08-24T12:45:33.326506'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.0002
+  - data.resample_freq=30T
+  - training.hedger.reward_type=mean_variance
+  - training.hedger.risk_aversion=1.0
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc2bps_freq30min_mean_variance
+  run_id: rl_gan_tc2bps_freq30min_mean_variance
+  start_time: '2025-08-24T12:45:30.830015'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.001"
+    "data.resample_freq=1T" "training.hedger.cvar_alpha=0.95" "experiment.seed=42"
+    "hydra.run.dir=runs/phase1_test/rl_gan_tc10bps_freq1min_cvar95"
+  end_time: '2025-08-24T12:45:35.819163'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.001
+  - data.resample_freq=1T
+  - training.hedger.cvar_alpha=0.95
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc10bps_freq1min_cvar95
+  run_id: rl_gan_tc10bps_freq1min_cvar95
+  start_time: '2025-08-24T12:45:33.326658'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.001"
+    "data.resample_freq=1T" "training.hedger.reward_type=mean_variance" "training.hedger.risk_aversion=1.0"
+    "experiment.seed=42" "hydra.run.dir=runs/phase1_test/rl_gan_tc10bps_freq1min_mean_variance"
+  end_time: '2025-08-24T12:45:38.424335'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.001
+  - data.resample_freq=1T
+  - training.hedger.reward_type=mean_variance
+  - training.hedger.risk_aversion=1.0
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc10bps_freq1min_mean_variance
+  run_id: rl_gan_tc10bps_freq1min_mean_variance
+  start_time: '2025-08-24T12:45:35.819311'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.001"
+    "data.resample_freq=8T" "training.hedger.cvar_alpha=0.95" "experiment.seed=42"
+    "hydra.run.dir=runs/phase1_test/rl_gan_tc10bps_freq8min_cvar95"
+  end_time: '2025-08-24T12:45:41.043535'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.001
+  - data.resample_freq=8T
+  - training.hedger.cvar_alpha=0.95
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc10bps_freq8min_cvar95
+  run_id: rl_gan_tc10bps_freq8min_cvar95
+  start_time: '2025-08-24T12:45:38.424505'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.001"
+    "data.resample_freq=8T" "training.hedger.reward_type=mean_variance" "training.hedger.risk_aversion=1.0"
+    "experiment.seed=42" "hydra.run.dir=runs/phase1_test/rl_gan_tc10bps_freq8min_mean_variance"
+  end_time: '2025-08-24T12:45:43.557490'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.001
+  - data.resample_freq=8T
+  - training.hedger.reward_type=mean_variance
+  - training.hedger.risk_aversion=1.0
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc10bps_freq8min_mean_variance
+  run_id: rl_gan_tc10bps_freq8min_mean_variance
+  start_time: '2025-08-24T12:45:41.043703'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.001"
+    "data.resample_freq=30T" "training.hedger.cvar_alpha=0.95" "experiment.seed=42"
+    "hydra.run.dir=runs/phase1_test/rl_gan_tc10bps_freq30min_cvar95"
+  end_time: '2025-08-24T12:45:46.341563'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.001
+  - data.resample_freq=30T
+  - training.hedger.cvar_alpha=0.95
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc10bps_freq30min_cvar95
+  run_id: rl_gan_tc10bps_freq30min_cvar95
+  start_time: '2025-08-24T12:45:43.557639'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+- command: python -m src.deephedge.train "model=rl_gan" "environment.transaction_cost=0.001"
+    "data.resample_freq=30T" "training.hedger.reward_type=mean_variance" "training.hedger.risk_aversion=1.0"
+    "experiment.seed=42" "hydra.run.dir=runs/phase1_test/rl_gan_tc10bps_freq30min_mean_variance"
+  end_time: '2025-08-24T12:45:48.877606'
+  exit_code: 1
+  overrides:
+  - model=rl_gan
+  - environment.transaction_cost=0.001
+  - data.resample_freq=30T
+  - training.hedger.reward_type=mean_variance
+  - training.hedger.risk_aversion=1.0
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test/rl_gan_tc10bps_freq30min_mean_variance
+  run_id: rl_gan_tc10bps_freq30min_mean_variance
+  start_time: '2025-08-24T12:45:46.341717'
+  status: failed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\nCould not override 'model'. No match in the defaults list.\n\
+    To append to your default list use +model=rl_gan\n\nSet the environment variable\
+    \ HYDRA_FULL_ERROR=1 for a complete stack trace.\n"
+  stdout: ''
+matrix_config:
+  frequencies:
+  - 1
+  - 8
+  - 30
+  model_variants:
+  - c_static
+  - c_dyn
+  - rl_gbm
+  - rl_gan
+  reward_functions:
+  - cvar95
+  - mean_variance
+  tc_levels:
+  - 0
+  - 2
+  - 10
+phase: 1.5_baseline_matrix
+results:
+  failed: 18
+  success_rate: 0.0
+  successful: 0
+  total_experiments: 18

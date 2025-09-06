@@ -1,0 +1,48 @@
+2025-08-24 12:46:52 | INFO     | src.deephedge.utils.logger:log_experiment_start:100 - ============================================================
+2025-08-24 12:46:52 | INFO     | src.deephedge.utils.logger:log_experiment_start:101 - EXPERIMENT START
+2025-08-24 12:46:52 | INFO     | src.deephedge.utils.logger:log_experiment_start:102 - ============================================================
+2025-08-24 12:46:52 | INFO     | src.deephedge.utils.logger:log_experiment_start:105 - Experiment Name: gan_vs_gbm_deep_hedging
+2025-08-24 12:46:52 | INFO     | src.deephedge.utils.logger:log_experiment_start:106 - Seed: 42
+2025-08-24 12:46:52 | INFO     | src.deephedge.utils.logger:log_experiment_start:107 - Device: cuda
+2025-08-24 12:46:52 | INFO     | src.deephedge.utils.logger:log_experiment_start:112 - Git Commit SHA: 6ada3f08649a1048a43a4a647a6008725452d260
+2025-08-24 12:46:52 | INFO     | src.deephedge.utils.logger:log_experiment_start:113 - Docker Image Hash: not-docker
+2025-08-24 12:46:52 | INFO     | src.deephedge.utils.logger:log_experiment_start:119 - Config Hash: e437ee00e0c4f407f30f2d2008fa48bb
+2025-08-24 12:46:52 | INFO     | src.deephedge.utils.logger:log_experiment_start:130 - CUDA not available, using CPU
+2025-08-24 12:46:52 | INFO     | src.deephedge.utils.logger:log_experiment_start:133 - Deterministic Mode: True
+2025-08-24 12:46:52 | INFO     | src.deephedge.utils.logger:log_experiment_start:134 - CUDA Deterministic: True
+2025-08-24 12:46:52 | INFO     | src.deephedge.utils.logger:log_experiment_start:136 - ============================================================
+2025-08-24 12:46:53 | INFO     | __main__:main:315 - Loading market data...
+2025-08-24 12:47:02 | INFO     | __main__:main:330 - Training GAN...
+2025-08-24 12:47:02 | INFO     | __main__:train_gan:52 - Training GAN...
+2025-08-24 12:47:02 | INFO     | __main__:train_gan:150 - GAN Epoch 0: D_loss=1.3876, G_loss=0.6842
+2025-08-24 12:47:06 | INFO     | __main__:train_gan:150 - GAN Epoch 20: D_loss=1.3897, G_loss=0.6878
+2025-08-24 12:47:09 | INFO     | __main__:train_gan:150 - GAN Epoch 40: D_loss=1.3822, G_loss=0.6997
+2025-08-24 12:47:13 | INFO     | __main__:train_gan:150 - GAN Epoch 60: D_loss=1.3856, G_loss=0.6840
+2025-08-24 12:47:17 | INFO     | __main__:train_gan:150 - GAN Epoch 80: D_loss=1.3895, G_loss=0.7021
+2025-08-24 12:47:20 | INFO     | __main__:main:334 - Training hedger...
+2025-08-24 12:47:20 | INFO     | __main__:train_hedger:154 - Training Hedger...
+2025-08-24 12:47:21 | INFO     | __main__:train_hedger:217 - Hedger Episode 0: Avg Reward = 1.0940
+2025-08-24 12:47:24 | INFO     | __main__:train_hedger:217 - Hedger Episode 100: Avg Reward = 0.9128
+2025-08-24 12:47:28 | INFO     | __main__:train_hedger:217 - Hedger Episode 200: Avg Reward = 1.3253
+2025-08-24 12:47:31 | INFO     | __main__:train_hedger:217 - Hedger Episode 300: Avg Reward = -0.0185
+2025-08-24 12:47:35 | INFO     | __main__:train_hedger:217 - Hedger Episode 400: Avg Reward = -2.4136
+2025-08-24 12:47:38 | INFO     | __main__:train_hedger:217 - Hedger Episode 500: Avg Reward = -2.6791
+2025-08-24 12:47:41 | INFO     | __main__:train_hedger:217 - Hedger Episode 600: Avg Reward = -0.5894
+2025-08-24 12:47:45 | INFO     | __main__:train_hedger:217 - Hedger Episode 700: Avg Reward = -2.8697
+2025-08-24 12:47:48 | INFO     | __main__:train_hedger:217 - Hedger Episode 800: Avg Reward = -2.1082
+2025-08-24 12:47:51 | INFO     | __main__:train_hedger:217 - Hedger Episode 900: Avg Reward = -3.9105
+2025-08-24 12:47:55 | INFO     | __main__:main:338 - Creating training curves...
+2025-08-24 12:47:56 | INFO     | src.deephedge.utils.logger:log_experiment_end:189 - ============================================================
+2025-08-24 12:47:56 | INFO     | src.deephedge.utils.logger:log_experiment_end:190 - EXPERIMENT COMPLETED
+2025-08-24 12:47:56 | INFO     | src.deephedge.utils.logger:log_experiment_end:191 - ============================================================
+2025-08-24 12:47:56 | INFO     | src.deephedge.utils.logger:log_experiment_end:192 - Duration: 63.22 seconds
+2025-08-24 12:47:56 | INFO     | src.deephedge.utils.logger:log_experiment_end:195 - Final Metrics:
+2025-08-24 12:47:56 | INFO     | src.deephedge.utils.logger:log_experiment_end:197 -   gan_metrics_count: 100
+2025-08-24 12:47:56 | INFO     | src.deephedge.utils.logger:log_experiment_end:197 -   hedger_metrics_count: 1000
+2025-08-24 12:47:56 | INFO     | src.deephedge.utils.logger:log_experiment_end:197 -   evaluation_periods: 0
+2025-08-24 12:47:56 | INFO     | src.deephedge.utils.logger:log_experiment_end:197 -   final_gan_d_loss: 1.378698706626892
+2025-08-24 12:47:56 | INFO     | src.deephedge.utils.logger:log_experiment_end:197 -   final_gan_g_loss: 0.6989256143569946
+2025-08-24 12:47:56 | INFO     | src.deephedge.utils.logger:log_experiment_end:197 -   final_hedger_reward: -2.3927618679068514
+2025-08-24 12:47:56 | INFO     | src.deephedge.utils.logger:log_experiment_end:197 -   final_hedger_cvar: 60.95413768014988
+2025-08-24 12:47:56 | INFO     | src.deephedge.utils.logger:log_experiment_end:199 - ============================================================
+2025-08-24 12:47:56 | INFO     | __main__:main:356 - Training completed!

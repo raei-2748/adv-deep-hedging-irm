@@ -1,0 +1,793 @@
+execution_time:
+  duration_seconds: 609.601021
+  end: '2025-08-24T13:11:05.420469'
+  start: '2025-08-24T13:00:55.819450'
+experiments:
+- command: python -m src.deephedge.train "model=c_dyn" "environment.transaction_cost=0.0"
+    "data.resample_freq=1T" "experiment.seed=42" "hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc0bps_freq1min_cvar95"
+  end_time: '2025-08-24T13:01:59.439840'
+  exit_code: 0
+  overrides:
+  - model=c_dyn
+  - environment.transaction_cost=0.0
+  - data.resample_freq=1T
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc0bps_freq1min_cvar95
+  run_id: c_dyn_tc0bps_freq1min_cvar95
+  start_time: '2025-08-24T13:00:55.820050'
+  status: completed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\n"
+  stdout: "2025-08-24 13:00:58 | INFO     | src.deephedge.utils.logger:log_experiment_start:100\
+    \ - ============================================================\n2025-08-24 13:00:58\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:101 - EXPERIMENT\
+    \ START\n2025-08-24 13:00:58 | INFO     | src.deephedge.utils.logger:log_experiment_start:102\
+    \ - ============================================================\n2025-08-24 13:00:58\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:105 - Experiment\
+    \ Name: gan_vs_gbm_deep_hedging\n2025-08-24 13:00:58 | INFO     | src.deephedge.utils.logger:log_experiment_start:106\
+    \ - Seed: 42\n2025-08-24 13:00:58 | INFO     | src.deephedge.utils.logger:log_experiment_start:107\
+    \ - Device: cuda\n2025-08-24 13:00:58 | INFO     | src.deephedge.utils.logger:log_experiment_start:112\
+    \ - Git Commit SHA: 6ada3f08649a1048a43a4a647a6008725452d260\n2025-08-24 13:00:58\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:113 - Docker Image\
+    \ Hash: not-docker\n2025-08-24 13:00:58 | INFO     | src.deephedge.utils.logger:log_experiment_start:119\
+    \ - Config Hash: 1ca3dd615bee2017b67c2981e66af703\n2025-08-24 13:00:58 | INFO\
+    \     | src.deephedge.utils.logger:log_experiment_start:130 - CUDA not available,\
+    \ using CPU\n2025-08-24 13:00:58 | INFO     | src.deephedge.utils.logger:log_experiment_start:133\
+    \ - Deterministic Mode: True\n2025-08-24 13:00:58 | INFO     | src.deephedge.utils.logger:log_experiment_start:134\
+    \ - CUDA Deterministic: True\n2025-08-24 13:00:58 | INFO     | src.deephedge.utils.logger:log_experiment_start:136\
+    \ - ============================================================\n\U0001F50D Verifying\
+    \ deterministic behavior...\n\U0001F3B2 PyTorch deterministic: True\n\U0001F3B2\
+    \ NumPy deterministic: True\n\U0001F3B2 Python random deterministic: True\n\U0001F512\
+    \ Overall deterministic: True\nWarning: Could not initialize W&B: Key 'to_container'\
+    \ is not in struct\n    full_key: to_container\n    object_type=dict\n2025-08-24\
+    \ 13:00:58 | INFO     | __main__:main:315 - Loading market data...\nFetching daily\
+    \ data for SPY from 2015-01-01 to 2025-01-01...\n\n[*********************100%***********************]\
+    \  1 of 1 completed\n\n1 Failed download:\n- SPY: No timezone found, symbol may\
+    \ be delisted\nError fetching or generating data: No daily data fetched. Check\
+    \ symbol and date range.\nUsing fully synthetic data for demonstration...\n2025-08-24\
+    \ 13:01:08 | INFO     | __main__:main:330 - Training GAN...\n2025-08-24 13:01:08\
+    \ | INFO     | __main__:train_gan:52 - Training GAN...\n2025-08-24 13:01:08 |\
+    \ INFO     | __main__:train_gan:150 - GAN Epoch 0: D_loss=1.3876, G_loss=0.6842\n\
+    2025-08-24 13:01:11 | INFO     | __main__:train_gan:150 - GAN Epoch 20: D_loss=1.3897,\
+    \ G_loss=0.6878\n2025-08-24 13:01:15 | INFO     | __main__:train_gan:150 - GAN\
+    \ Epoch 40: D_loss=1.3822, G_loss=0.6997\n2025-08-24 13:01:18 | INFO     | __main__:train_gan:150\
+    \ - GAN Epoch 60: D_loss=1.3856, G_loss=0.6840\n2025-08-24 13:01:21 | INFO   \
+    \  | __main__:train_gan:150 - GAN Epoch 80: D_loss=1.3895, G_loss=0.7021\n2025-08-24\
+    \ 13:01:24 | INFO     | __main__:main:334 - Training hedger...\n2025-08-24 13:01:24\
+    \ | INFO     | __main__:train_hedger:154 - Training Hedger...\n2025-08-24 13:01:24\
+    \ | INFO     | __main__:train_hedger:217 - Hedger Episode 0: Avg Reward = 1.0771\n\
+    2025-08-24 13:01:28 | INFO     | __main__:train_hedger:217 - Hedger Episode 100:\
+    \ Avg Reward = -0.0911\n2025-08-24 13:01:31 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 200: Avg Reward = 0.1192\n2025-08-24 13:01:34 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 300: Avg Reward = 1.1168\n2025-08-24\
+    \ 13:01:38 | INFO     | __main__:train_hedger:217 - Hedger Episode 400: Avg Reward\
+    \ = 10.9936\n2025-08-24 13:01:41 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 500: Avg Reward = 4.2719\n2025-08-24 13:01:45 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 600: Avg Reward = 4.7101\n2025-08-24 13:01:48 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 700: Avg Reward = 9.4219\n2025-08-24\
+    \ 13:01:51 | INFO     | __main__:train_hedger:217 - Hedger Episode 800: Avg Reward\
+    \ = -8.3865\n2025-08-24 13:01:55 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 900: Avg Reward = -4.8053\n2025-08-24 13:01:58 | INFO     | __main__:main:338\
+    \ - Creating training curves...\n2025-08-24 13:01:59 | INFO     | src.deephedge.utils.logger:log_experiment_end:189\
+    \ - ============================================================\n2025-08-24 13:01:59\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:190 - EXPERIMENT\
+    \ COMPLETED\n2025-08-24 13:01:59 | INFO     | src.deephedge.utils.logger:log_experiment_end:191\
+    \ - ============================================================\n2025-08-24 13:01:59\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:192 - Duration: 60.74\
+    \ seconds\n2025-08-24 13:01:59 | INFO     | src.deephedge.utils.logger:log_experiment_end:195\
+    \ - Final Metrics:\n2025-08-24 13:01:59 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   gan_metrics_count: 100\n2025-08-24 13:01:59 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   hedger_metrics_count: 1000\n2025-08-24 13:01:59 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   evaluation_periods: 0\n2025-08-24 13:01:59 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_d_loss: 1.378698706626892\n2025-08-24 13:01:59 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_g_loss: 0.6989256143569946\n2025-08-24 13:01:59 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_hedger_reward: 12.873334664927203\n2025-08-24 13:01:59 | INFO    \
+    \ | src.deephedge.utils.logger:log_experiment_end:197 -   final_hedger_cvar: 136.82325598051708\n\
+    2025-08-24 13:01:59 | INFO     | src.deephedge.utils.logger:log_experiment_end:199\
+    \ - ============================================================\n2025-08-24 13:01:59\
+    \ | INFO     | __main__:main:356 - Training completed!\n"
+- command: python -m src.deephedge.train "model=c_dyn" "environment.transaction_cost=0.0"
+    "data.resample_freq=8T" "experiment.seed=42" "hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc0bps_freq8min_cvar95"
+  end_time: '2025-08-24T13:03:10.552322'
+  exit_code: 0
+  overrides:
+  - model=c_dyn
+  - environment.transaction_cost=0.0
+  - data.resample_freq=8T
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc0bps_freq8min_cvar95
+  run_id: c_dyn_tc0bps_freq8min_cvar95
+  start_time: '2025-08-24T13:01:59.440058'
+  status: completed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\n"
+  stdout: "2025-08-24 13:02:01 | INFO     | src.deephedge.utils.logger:log_experiment_start:100\
+    \ - ============================================================\n2025-08-24 13:02:01\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:101 - EXPERIMENT\
+    \ START\n2025-08-24 13:02:01 | INFO     | src.deephedge.utils.logger:log_experiment_start:102\
+    \ - ============================================================\n2025-08-24 13:02:01\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:105 - Experiment\
+    \ Name: gan_vs_gbm_deep_hedging\n2025-08-24 13:02:01 | INFO     | src.deephedge.utils.logger:log_experiment_start:106\
+    \ - Seed: 42\n2025-08-24 13:02:01 | INFO     | src.deephedge.utils.logger:log_experiment_start:107\
+    \ - Device: cuda\n2025-08-24 13:02:02 | INFO     | src.deephedge.utils.logger:log_experiment_start:112\
+    \ - Git Commit SHA: 6ada3f08649a1048a43a4a647a6008725452d260\n2025-08-24 13:02:02\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:113 - Docker Image\
+    \ Hash: not-docker\n2025-08-24 13:02:02 | INFO     | src.deephedge.utils.logger:log_experiment_start:119\
+    \ - Config Hash: 73cee5dfdbc414471ee83b04eb421ef5\n2025-08-24 13:02:02 | INFO\
+    \     | src.deephedge.utils.logger:log_experiment_start:130 - CUDA not available,\
+    \ using CPU\n2025-08-24 13:02:02 | INFO     | src.deephedge.utils.logger:log_experiment_start:133\
+    \ - Deterministic Mode: True\n2025-08-24 13:02:02 | INFO     | src.deephedge.utils.logger:log_experiment_start:134\
+    \ - CUDA Deterministic: True\n2025-08-24 13:02:02 | INFO     | src.deephedge.utils.logger:log_experiment_start:136\
+    \ - ============================================================\n\U0001F50D Verifying\
+    \ deterministic behavior...\n\U0001F3B2 PyTorch deterministic: True\n\U0001F3B2\
+    \ NumPy deterministic: True\n\U0001F3B2 Python random deterministic: True\n\U0001F512\
+    \ Overall deterministic: True\nWarning: Could not initialize W&B: Key 'to_container'\
+    \ is not in struct\n    full_key: to_container\n    object_type=dict\n2025-08-24\
+    \ 13:02:02 | INFO     | __main__:main:315 - Loading market data...\nFetching daily\
+    \ data for SPY from 2015-01-01 to 2025-01-01...\n\n[*********************100%***********************]\
+    \  1 of 1 completed\n\n1 Failed download:\n- SPY: No timezone found, symbol may\
+    \ be delisted\nError fetching or generating data: No daily data fetched. Check\
+    \ symbol and date range.\nUsing fully synthetic data for demonstration...\n2025-08-24\
+    \ 13:02:11 | INFO     | __main__:main:330 - Training GAN...\n2025-08-24 13:02:11\
+    \ | INFO     | __main__:train_gan:52 - Training GAN...\n2025-08-24 13:02:12 |\
+    \ INFO     | __main__:train_gan:150 - GAN Epoch 0: D_loss=1.3876, G_loss=0.6842\n\
+    2025-08-24 13:02:15 | INFO     | __main__:train_gan:150 - GAN Epoch 20: D_loss=1.3897,\
+    \ G_loss=0.6878\n2025-08-24 13:02:19 | INFO     | __main__:train_gan:150 - GAN\
+    \ Epoch 40: D_loss=1.3822, G_loss=0.6997\n2025-08-24 13:02:22 | INFO     | __main__:train_gan:150\
+    \ - GAN Epoch 60: D_loss=1.3856, G_loss=0.6840\n2025-08-24 13:02:27 | INFO   \
+    \  | __main__:train_gan:150 - GAN Epoch 80: D_loss=1.3895, G_loss=0.7021\n2025-08-24\
+    \ 13:02:30 | INFO     | __main__:main:334 - Training hedger...\n2025-08-24 13:02:30\
+    \ | INFO     | __main__:train_hedger:154 - Training Hedger...\n2025-08-24 13:02:30\
+    \ | INFO     | __main__:train_hedger:217 - Hedger Episode 0: Avg Reward = 1.0771\n\
+    2025-08-24 13:02:34 | INFO     | __main__:train_hedger:217 - Hedger Episode 100:\
+    \ Avg Reward = -0.0911\n2025-08-24 13:02:38 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 200: Avg Reward = 0.1192\n2025-08-24 13:02:42 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 300: Avg Reward = 1.1168\n2025-08-24\
+    \ 13:02:46 | INFO     | __main__:train_hedger:217 - Hedger Episode 400: Avg Reward\
+    \ = 10.9936\n2025-08-24 13:02:50 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 500: Avg Reward = 4.2719\n2025-08-24 13:02:54 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 600: Avg Reward = 4.7101\n2025-08-24 13:02:58 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 700: Avg Reward = 9.4219\n2025-08-24\
+    \ 13:03:01 | INFO     | __main__:train_hedger:217 - Hedger Episode 800: Avg Reward\
+    \ = -8.3865\n2025-08-24 13:03:05 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 900: Avg Reward = -4.8053\n2025-08-24 13:03:09 | INFO     | __main__:main:338\
+    \ - Creating training curves...\n2025-08-24 13:03:10 | INFO     | src.deephedge.utils.logger:log_experiment_end:189\
+    \ - ============================================================\n2025-08-24 13:03:10\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:190 - EXPERIMENT\
+    \ COMPLETED\n2025-08-24 13:03:10 | INFO     | src.deephedge.utils.logger:log_experiment_end:191\
+    \ - ============================================================\n2025-08-24 13:03:10\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:192 - Duration: 68.17\
+    \ seconds\n2025-08-24 13:03:10 | INFO     | src.deephedge.utils.logger:log_experiment_end:195\
+    \ - Final Metrics:\n2025-08-24 13:03:10 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   gan_metrics_count: 100\n2025-08-24 13:03:10 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   hedger_metrics_count: 1000\n2025-08-24 13:03:10 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   evaluation_periods: 0\n2025-08-24 13:03:10 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_d_loss: 1.378698706626892\n2025-08-24 13:03:10 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_g_loss: 0.6989256143569946\n2025-08-24 13:03:10 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_hedger_reward: 12.873334664927203\n2025-08-24 13:03:10 | INFO    \
+    \ | src.deephedge.utils.logger:log_experiment_end:197 -   final_hedger_cvar: 136.82325598051708\n\
+    2025-08-24 13:03:10 | INFO     | src.deephedge.utils.logger:log_experiment_end:199\
+    \ - ============================================================\n2025-08-24 13:03:10\
+    \ | INFO     | __main__:main:356 - Training completed!\n"
+- command: python -m src.deephedge.train "model=c_dyn" "environment.transaction_cost=0.0"
+    "data.resample_freq=30T" "experiment.seed=42" "hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc0bps_freq30min_cvar95"
+  end_time: '2025-08-24T13:04:16.088825'
+  exit_code: 0
+  overrides:
+  - model=c_dyn
+  - environment.transaction_cost=0.0
+  - data.resample_freq=30T
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc0bps_freq30min_cvar95
+  run_id: c_dyn_tc0bps_freq30min_cvar95
+  start_time: '2025-08-24T13:03:10.552655'
+  status: completed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\n"
+  stdout: "2025-08-24 13:03:13 | INFO     | src.deephedge.utils.logger:log_experiment_start:100\
+    \ - ============================================================\n2025-08-24 13:03:13\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:101 - EXPERIMENT\
+    \ START\n2025-08-24 13:03:13 | INFO     | src.deephedge.utils.logger:log_experiment_start:102\
+    \ - ============================================================\n2025-08-24 13:03:13\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:105 - Experiment\
+    \ Name: gan_vs_gbm_deep_hedging\n2025-08-24 13:03:13 | INFO     | src.deephedge.utils.logger:log_experiment_start:106\
+    \ - Seed: 42\n2025-08-24 13:03:13 | INFO     | src.deephedge.utils.logger:log_experiment_start:107\
+    \ - Device: cuda\n2025-08-24 13:03:13 | INFO     | src.deephedge.utils.logger:log_experiment_start:112\
+    \ - Git Commit SHA: 6ada3f08649a1048a43a4a647a6008725452d260\n2025-08-24 13:03:13\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:113 - Docker Image\
+    \ Hash: not-docker\n2025-08-24 13:03:13 | INFO     | src.deephedge.utils.logger:log_experiment_start:119\
+    \ - Config Hash: 2a94866b2aeea358dde38cafdfed7728\n2025-08-24 13:03:13 | INFO\
+    \     | src.deephedge.utils.logger:log_experiment_start:130 - CUDA not available,\
+    \ using CPU\n2025-08-24 13:03:13 | INFO     | src.deephedge.utils.logger:log_experiment_start:133\
+    \ - Deterministic Mode: True\n2025-08-24 13:03:13 | INFO     | src.deephedge.utils.logger:log_experiment_start:134\
+    \ - CUDA Deterministic: True\n2025-08-24 13:03:13 | INFO     | src.deephedge.utils.logger:log_experiment_start:136\
+    \ - ============================================================\n\U0001F50D Verifying\
+    \ deterministic behavior...\n\U0001F3B2 PyTorch deterministic: True\n\U0001F3B2\
+    \ NumPy deterministic: True\n\U0001F3B2 Python random deterministic: True\n\U0001F512\
+    \ Overall deterministic: True\nWarning: Could not initialize W&B: Key 'to_container'\
+    \ is not in struct\n    full_key: to_container\n    object_type=dict\n2025-08-24\
+    \ 13:03:13 | INFO     | __main__:main:315 - Loading market data...\nFetching daily\
+    \ data for SPY from 2015-01-01 to 2025-01-01...\n\n[*********************100%***********************]\
+    \  1 of 1 completed\n\n1 Failed download:\n- SPY: No timezone found, symbol may\
+    \ be delisted\nError fetching or generating data: No daily data fetched. Check\
+    \ symbol and date range.\nUsing fully synthetic data for demonstration...\n2025-08-24\
+    \ 13:03:22 | INFO     | __main__:main:330 - Training GAN...\n2025-08-24 13:03:22\
+    \ | INFO     | __main__:train_gan:52 - Training GAN...\n2025-08-24 13:03:23 |\
+    \ INFO     | __main__:train_gan:150 - GAN Epoch 0: D_loss=1.3876, G_loss=0.6842\n\
+    2025-08-24 13:03:26 | INFO     | __main__:train_gan:150 - GAN Epoch 20: D_loss=1.3897,\
+    \ G_loss=0.6878\n2025-08-24 13:03:30 | INFO     | __main__:train_gan:150 - GAN\
+    \ Epoch 40: D_loss=1.3822, G_loss=0.6997\n2025-08-24 13:03:34 | INFO     | __main__:train_gan:150\
+    \ - GAN Epoch 60: D_loss=1.3856, G_loss=0.6840\n2025-08-24 13:03:37 | INFO   \
+    \  | __main__:train_gan:150 - GAN Epoch 80: D_loss=1.3895, G_loss=0.7021\n2025-08-24\
+    \ 13:03:41 | INFO     | __main__:main:334 - Training hedger...\n2025-08-24 13:03:41\
+    \ | INFO     | __main__:train_hedger:154 - Training Hedger...\n2025-08-24 13:03:41\
+    \ | INFO     | __main__:train_hedger:217 - Hedger Episode 0: Avg Reward = 1.0771\n\
+    2025-08-24 13:03:44 | INFO     | __main__:train_hedger:217 - Hedger Episode 100:\
+    \ Avg Reward = -0.0911\n2025-08-24 13:03:47 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 200: Avg Reward = 0.1192\n2025-08-24 13:03:51 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 300: Avg Reward = 1.1168\n2025-08-24\
+    \ 13:03:54 | INFO     | __main__:train_hedger:217 - Hedger Episode 400: Avg Reward\
+    \ = 10.9936\n2025-08-24 13:03:58 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 500: Avg Reward = 4.2719\n2025-08-24 13:04:01 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 600: Avg Reward = 4.7101\n2025-08-24 13:04:04 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 700: Avg Reward = 9.4219\n2025-08-24\
+    \ 13:04:08 | INFO     | __main__:train_hedger:217 - Hedger Episode 800: Avg Reward\
+    \ = -8.3865\n2025-08-24 13:04:11 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 900: Avg Reward = -4.8053\n2025-08-24 13:04:15 | INFO     | __main__:main:338\
+    \ - Creating training curves...\n2025-08-24 13:04:15 | INFO     | src.deephedge.utils.logger:log_experiment_end:189\
+    \ - ============================================================\n2025-08-24 13:04:15\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:190 - EXPERIMENT\
+    \ COMPLETED\n2025-08-24 13:04:15 | INFO     | src.deephedge.utils.logger:log_experiment_end:191\
+    \ - ============================================================\n2025-08-24 13:04:15\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:192 - Duration: 62.40\
+    \ seconds\n2025-08-24 13:04:15 | INFO     | src.deephedge.utils.logger:log_experiment_end:195\
+    \ - Final Metrics:\n2025-08-24 13:04:15 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   gan_metrics_count: 100\n2025-08-24 13:04:15 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   hedger_metrics_count: 1000\n2025-08-24 13:04:15 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   evaluation_periods: 0\n2025-08-24 13:04:15 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_d_loss: 1.378698706626892\n2025-08-24 13:04:15 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_g_loss: 0.6989256143569946\n2025-08-24 13:04:15 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_hedger_reward: 12.873334664927203\n2025-08-24 13:04:15 | INFO    \
+    \ | src.deephedge.utils.logger:log_experiment_end:197 -   final_hedger_cvar: 136.82325598051708\n\
+    2025-08-24 13:04:15 | INFO     | src.deephedge.utils.logger:log_experiment_end:199\
+    \ - ============================================================\n2025-08-24 13:04:15\
+    \ | INFO     | __main__:main:356 - Training completed!\n"
+- command: python -m src.deephedge.train "model=c_dyn" "environment.transaction_cost=0.0002"
+    "data.resample_freq=1T" "experiment.seed=42" "hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc2bps_freq1min_cvar95"
+  end_time: '2025-08-24T13:05:21.339753'
+  exit_code: 0
+  overrides:
+  - model=c_dyn
+  - environment.transaction_cost=0.0002
+  - data.resample_freq=1T
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc2bps_freq1min_cvar95
+  run_id: c_dyn_tc2bps_freq1min_cvar95
+  start_time: '2025-08-24T13:04:16.088974'
+  status: completed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\n"
+  stdout: "2025-08-24 13:04:18 | INFO     | src.deephedge.utils.logger:log_experiment_start:100\
+    \ - ============================================================\n2025-08-24 13:04:18\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:101 - EXPERIMENT\
+    \ START\n2025-08-24 13:04:18 | INFO     | src.deephedge.utils.logger:log_experiment_start:102\
+    \ - ============================================================\n2025-08-24 13:04:18\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:105 - Experiment\
+    \ Name: gan_vs_gbm_deep_hedging\n2025-08-24 13:04:18 | INFO     | src.deephedge.utils.logger:log_experiment_start:106\
+    \ - Seed: 42\n2025-08-24 13:04:18 | INFO     | src.deephedge.utils.logger:log_experiment_start:107\
+    \ - Device: cuda\n2025-08-24 13:04:18 | INFO     | src.deephedge.utils.logger:log_experiment_start:112\
+    \ - Git Commit SHA: 6ada3f08649a1048a43a4a647a6008725452d260\n2025-08-24 13:04:18\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:113 - Docker Image\
+    \ Hash: not-docker\n2025-08-24 13:04:18 | INFO     | src.deephedge.utils.logger:log_experiment_start:119\
+    \ - Config Hash: 6b2ebcb25f3b170928bee20415239010\n2025-08-24 13:04:18 | INFO\
+    \     | src.deephedge.utils.logger:log_experiment_start:130 - CUDA not available,\
+    \ using CPU\n2025-08-24 13:04:18 | INFO     | src.deephedge.utils.logger:log_experiment_start:133\
+    \ - Deterministic Mode: True\n2025-08-24 13:04:18 | INFO     | src.deephedge.utils.logger:log_experiment_start:134\
+    \ - CUDA Deterministic: True\n2025-08-24 13:04:18 | INFO     | src.deephedge.utils.logger:log_experiment_start:136\
+    \ - ============================================================\n\U0001F50D Verifying\
+    \ deterministic behavior...\n\U0001F3B2 PyTorch deterministic: True\n\U0001F3B2\
+    \ NumPy deterministic: True\n\U0001F3B2 Python random deterministic: True\n\U0001F512\
+    \ Overall deterministic: True\nWarning: Could not initialize W&B: Key 'to_container'\
+    \ is not in struct\n    full_key: to_container\n    object_type=dict\n2025-08-24\
+    \ 13:04:18 | INFO     | __main__:main:315 - Loading market data...\nFetching daily\
+    \ data for SPY from 2015-01-01 to 2025-01-01...\n\n[*********************100%***********************]\
+    \  1 of 1 completed\n\n1 Failed download:\n- SPY: No timezone found, symbol may\
+    \ be delisted\nError fetching or generating data: No daily data fetched. Check\
+    \ symbol and date range.\nUsing fully synthetic data for demonstration...\n2025-08-24\
+    \ 13:04:28 | INFO     | __main__:main:330 - Training GAN...\n2025-08-24 13:04:28\
+    \ | INFO     | __main__:train_gan:52 - Training GAN...\n2025-08-24 13:04:28 |\
+    \ INFO     | __main__:train_gan:150 - GAN Epoch 0: D_loss=1.3876, G_loss=0.6842\n\
+    2025-08-24 13:04:32 | INFO     | __main__:train_gan:150 - GAN Epoch 20: D_loss=1.3897,\
+    \ G_loss=0.6878\n2025-08-24 13:04:35 | INFO     | __main__:train_gan:150 - GAN\
+    \ Epoch 40: D_loss=1.3822, G_loss=0.6997\n2025-08-24 13:04:39 | INFO     | __main__:train_gan:150\
+    \ - GAN Epoch 60: D_loss=1.3856, G_loss=0.6840\n2025-08-24 13:04:42 | INFO   \
+    \  | __main__:train_gan:150 - GAN Epoch 80: D_loss=1.3895, G_loss=0.7021\n2025-08-24\
+    \ 13:04:46 | INFO     | __main__:main:334 - Training hedger...\n2025-08-24 13:04:46\
+    \ | INFO     | __main__:train_hedger:154 - Training Hedger...\n2025-08-24 13:04:46\
+    \ | INFO     | __main__:train_hedger:217 - Hedger Episode 0: Avg Reward = 1.1109\n\
+    2025-08-24 13:04:49 | INFO     | __main__:train_hedger:217 - Hedger Episode 100:\
+    \ Avg Reward = 0.4780\n2025-08-24 13:04:53 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 200: Avg Reward = -2.9570\n2025-08-24 13:04:56 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 300: Avg Reward = 1.6398\n2025-08-24\
+    \ 13:04:59 | INFO     | __main__:train_hedger:217 - Hedger Episode 400: Avg Reward\
+    \ = 10.1097\n2025-08-24 13:05:03 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 500: Avg Reward = 3.4496\n2025-08-24 13:05:06 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 600: Avg Reward = 7.4203\n2025-08-24 13:05:10 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 700: Avg Reward = -0.2684\n2025-08-24\
+    \ 13:05:13 | INFO     | __main__:train_hedger:217 - Hedger Episode 800: Avg Reward\
+    \ = 12.0699\n2025-08-24 13:05:16 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 900: Avg Reward = 4.5900\n2025-08-24 13:05:20 | INFO     | __main__:main:338\
+    \ - Creating training curves...\n2025-08-24 13:05:21 | INFO     | src.deephedge.utils.logger:log_experiment_end:189\
+    \ - ============================================================\n2025-08-24 13:05:21\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:190 - EXPERIMENT\
+    \ COMPLETED\n2025-08-24 13:05:21 | INFO     | src.deephedge.utils.logger:log_experiment_end:191\
+    \ - ============================================================\n2025-08-24 13:05:21\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:192 - Duration: 62.41\
+    \ seconds\n2025-08-24 13:05:21 | INFO     | src.deephedge.utils.logger:log_experiment_end:195\
+    \ - Final Metrics:\n2025-08-24 13:05:21 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   gan_metrics_count: 100\n2025-08-24 13:05:21 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   hedger_metrics_count: 1000\n2025-08-24 13:05:21 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   evaluation_periods: 0\n2025-08-24 13:05:21 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_d_loss: 1.378698706626892\n2025-08-24 13:05:21 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_g_loss: 0.6989256143569946\n2025-08-24 13:05:21 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_hedger_reward: 5.995246506136287\n2025-08-24 13:05:21 | INFO     |\
+    \ src.deephedge.utils.logger:log_experiment_end:197 -   final_hedger_cvar: 78.44711605342412\n\
+    2025-08-24 13:05:21 | INFO     | src.deephedge.utils.logger:log_experiment_end:199\
+    \ - ============================================================\n2025-08-24 13:05:21\
+    \ | INFO     | __main__:main:356 - Training completed!\n"
+- command: python -m src.deephedge.train "model=c_dyn" "environment.transaction_cost=0.0002"
+    "data.resample_freq=8T" "experiment.seed=42" "hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc2bps_freq8min_cvar95"
+  end_time: '2025-08-24T13:06:27.152072'
+  exit_code: 0
+  overrides:
+  - model=c_dyn
+  - environment.transaction_cost=0.0002
+  - data.resample_freq=8T
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc2bps_freq8min_cvar95
+  run_id: c_dyn_tc2bps_freq8min_cvar95
+  start_time: '2025-08-24T13:05:21.339923'
+  status: completed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\n"
+  stdout: "2025-08-24 13:05:23 | INFO     | src.deephedge.utils.logger:log_experiment_start:100\
+    \ - ============================================================\n2025-08-24 13:05:23\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:101 - EXPERIMENT\
+    \ START\n2025-08-24 13:05:23 | INFO     | src.deephedge.utils.logger:log_experiment_start:102\
+    \ - ============================================================\n2025-08-24 13:05:23\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:105 - Experiment\
+    \ Name: gan_vs_gbm_deep_hedging\n2025-08-24 13:05:23 | INFO     | src.deephedge.utils.logger:log_experiment_start:106\
+    \ - Seed: 42\n2025-08-24 13:05:23 | INFO     | src.deephedge.utils.logger:log_experiment_start:107\
+    \ - Device: cuda\n2025-08-24 13:05:23 | INFO     | src.deephedge.utils.logger:log_experiment_start:112\
+    \ - Git Commit SHA: 6ada3f08649a1048a43a4a647a6008725452d260\n2025-08-24 13:05:23\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:113 - Docker Image\
+    \ Hash: not-docker\n2025-08-24 13:05:23 | INFO     | src.deephedge.utils.logger:log_experiment_start:119\
+    \ - Config Hash: 6a260175b5e890f9d8c6efca1b18cf56\n2025-08-24 13:05:23 | INFO\
+    \     | src.deephedge.utils.logger:log_experiment_start:130 - CUDA not available,\
+    \ using CPU\n2025-08-24 13:05:23 | INFO     | src.deephedge.utils.logger:log_experiment_start:133\
+    \ - Deterministic Mode: True\n2025-08-24 13:05:23 | INFO     | src.deephedge.utils.logger:log_experiment_start:134\
+    \ - CUDA Deterministic: True\n2025-08-24 13:05:23 | INFO     | src.deephedge.utils.logger:log_experiment_start:136\
+    \ - ============================================================\n\U0001F50D Verifying\
+    \ deterministic behavior...\n\U0001F3B2 PyTorch deterministic: True\n\U0001F3B2\
+    \ NumPy deterministic: True\n\U0001F3B2 Python random deterministic: True\n\U0001F512\
+    \ Overall deterministic: True\nWarning: Could not initialize W&B: Key 'to_container'\
+    \ is not in struct\n    full_key: to_container\n    object_type=dict\n2025-08-24\
+    \ 13:05:24 | INFO     | __main__:main:315 - Loading market data...\nFetching daily\
+    \ data for SPY from 2015-01-01 to 2025-01-01...\n\n[*********************100%***********************]\
+    \  1 of 1 completed\n\n1 Failed download:\n- SPY: No timezone found, symbol may\
+    \ be delisted\nError fetching or generating data: No daily data fetched. Check\
+    \ symbol and date range.\nUsing fully synthetic data for demonstration...\n2025-08-24\
+    \ 13:05:34 | INFO     | __main__:main:330 - Training GAN...\n2025-08-24 13:05:34\
+    \ | INFO     | __main__:train_gan:52 - Training GAN...\n2025-08-24 13:05:34 |\
+    \ INFO     | __main__:train_gan:150 - GAN Epoch 0: D_loss=1.3876, G_loss=0.6842\n\
+    2025-08-24 13:05:37 | INFO     | __main__:train_gan:150 - GAN Epoch 20: D_loss=1.3897,\
+    \ G_loss=0.6878\n2025-08-24 13:05:41 | INFO     | __main__:train_gan:150 - GAN\
+    \ Epoch 40: D_loss=1.3822, G_loss=0.6997\n2025-08-24 13:05:45 | INFO     | __main__:train_gan:150\
+    \ - GAN Epoch 60: D_loss=1.3856, G_loss=0.6840\n2025-08-24 13:05:48 | INFO   \
+    \  | __main__:train_gan:150 - GAN Epoch 80: D_loss=1.3895, G_loss=0.7021\n2025-08-24\
+    \ 13:05:52 | INFO     | __main__:main:334 - Training hedger...\n2025-08-24 13:05:52\
+    \ | INFO     | __main__:train_hedger:154 - Training Hedger...\n2025-08-24 13:05:52\
+    \ | INFO     | __main__:train_hedger:217 - Hedger Episode 0: Avg Reward = 1.1109\n\
+    2025-08-24 13:05:55 | INFO     | __main__:train_hedger:217 - Hedger Episode 100:\
+    \ Avg Reward = 0.4780\n2025-08-24 13:05:59 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 200: Avg Reward = -2.9570\n2025-08-24 13:06:02 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 300: Avg Reward = 1.6398\n2025-08-24\
+    \ 13:06:05 | INFO     | __main__:train_hedger:217 - Hedger Episode 400: Avg Reward\
+    \ = 10.1097\n2025-08-24 13:06:09 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 500: Avg Reward = 3.4496\n2025-08-24 13:06:12 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 600: Avg Reward = 7.4203\n2025-08-24 13:06:16 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 700: Avg Reward = -0.2684\n2025-08-24\
+    \ 13:06:19 | INFO     | __main__:train_hedger:217 - Hedger Episode 800: Avg Reward\
+    \ = 12.0699\n2025-08-24 13:06:22 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 900: Avg Reward = 4.5900\n2025-08-24 13:06:26 | INFO     | __main__:main:338\
+    \ - Creating training curves...\n2025-08-24 13:06:26 | INFO     | src.deephedge.utils.logger:log_experiment_end:189\
+    \ - ============================================================\n2025-08-24 13:06:26\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:190 - EXPERIMENT\
+    \ COMPLETED\n2025-08-24 13:06:26 | INFO     | src.deephedge.utils.logger:log_experiment_end:191\
+    \ - ============================================================\n2025-08-24 13:06:26\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:192 - Duration: 62.93\
+    \ seconds\n2025-08-24 13:06:26 | INFO     | src.deephedge.utils.logger:log_experiment_end:195\
+    \ - Final Metrics:\n2025-08-24 13:06:26 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   gan_metrics_count: 100\n2025-08-24 13:06:26 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   hedger_metrics_count: 1000\n2025-08-24 13:06:26 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   evaluation_periods: 0\n2025-08-24 13:06:26 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_d_loss: 1.378698706626892\n2025-08-24 13:06:26 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_g_loss: 0.6989256143569946\n2025-08-24 13:06:26 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_hedger_reward: 5.995246506136287\n2025-08-24 13:06:26 | INFO     |\
+    \ src.deephedge.utils.logger:log_experiment_end:197 -   final_hedger_cvar: 78.44711605342412\n\
+    2025-08-24 13:06:26 | INFO     | src.deephedge.utils.logger:log_experiment_end:199\
+    \ - ============================================================\n2025-08-24 13:06:26\
+    \ | INFO     | __main__:main:356 - Training completed!\n"
+- command: python -m src.deephedge.train "model=c_dyn" "environment.transaction_cost=0.0002"
+    "data.resample_freq=30T" "experiment.seed=42" "hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc2bps_freq30min_cvar95"
+  end_time: '2025-08-24T13:07:32.545157'
+  exit_code: 0
+  overrides:
+  - model=c_dyn
+  - environment.transaction_cost=0.0002
+  - data.resample_freq=30T
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc2bps_freq30min_cvar95
+  run_id: c_dyn_tc2bps_freq30min_cvar95
+  start_time: '2025-08-24T13:06:27.152299'
+  status: completed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\n"
+  stdout: "2025-08-24 13:06:29 | INFO     | src.deephedge.utils.logger:log_experiment_start:100\
+    \ - ============================================================\n2025-08-24 13:06:29\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:101 - EXPERIMENT\
+    \ START\n2025-08-24 13:06:29 | INFO     | src.deephedge.utils.logger:log_experiment_start:102\
+    \ - ============================================================\n2025-08-24 13:06:29\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:105 - Experiment\
+    \ Name: gan_vs_gbm_deep_hedging\n2025-08-24 13:06:29 | INFO     | src.deephedge.utils.logger:log_experiment_start:106\
+    \ - Seed: 42\n2025-08-24 13:06:29 | INFO     | src.deephedge.utils.logger:log_experiment_start:107\
+    \ - Device: cuda\n2025-08-24 13:06:29 | INFO     | src.deephedge.utils.logger:log_experiment_start:112\
+    \ - Git Commit SHA: 6ada3f08649a1048a43a4a647a6008725452d260\n2025-08-24 13:06:29\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:113 - Docker Image\
+    \ Hash: not-docker\n2025-08-24 13:06:29 | INFO     | src.deephedge.utils.logger:log_experiment_start:119\
+    \ - Config Hash: 930878c2df4d4d70987d63e4009a6af9\n2025-08-24 13:06:29 | INFO\
+    \     | src.deephedge.utils.logger:log_experiment_start:130 - CUDA not available,\
+    \ using CPU\n2025-08-24 13:06:29 | INFO     | src.deephedge.utils.logger:log_experiment_start:133\
+    \ - Deterministic Mode: True\n2025-08-24 13:06:29 | INFO     | src.deephedge.utils.logger:log_experiment_start:134\
+    \ - CUDA Deterministic: True\n2025-08-24 13:06:29 | INFO     | src.deephedge.utils.logger:log_experiment_start:136\
+    \ - ============================================================\n\U0001F50D Verifying\
+    \ deterministic behavior...\n\U0001F3B2 PyTorch deterministic: True\n\U0001F3B2\
+    \ NumPy deterministic: True\n\U0001F3B2 Python random deterministic: True\n\U0001F512\
+    \ Overall deterministic: True\nWarning: Could not initialize W&B: Key 'to_container'\
+    \ is not in struct\n    full_key: to_container\n    object_type=dict\n2025-08-24\
+    \ 13:06:29 | INFO     | __main__:main:315 - Loading market data...\nFetching daily\
+    \ data for SPY from 2015-01-01 to 2025-01-01...\n\n[*********************100%***********************]\
+    \  1 of 1 completed\n\n1 Failed download:\n- SPY: No timezone found, symbol may\
+    \ be delisted\nError fetching or generating data: No daily data fetched. Check\
+    \ symbol and date range.\nUsing fully synthetic data for demonstration...\n2025-08-24\
+    \ 13:06:39 | INFO     | __main__:main:330 - Training GAN...\n2025-08-24 13:06:39\
+    \ | INFO     | __main__:train_gan:52 - Training GAN...\n2025-08-24 13:06:39 |\
+    \ INFO     | __main__:train_gan:150 - GAN Epoch 0: D_loss=1.3876, G_loss=0.6842\n\
+    2025-08-24 13:06:43 | INFO     | __main__:train_gan:150 - GAN Epoch 20: D_loss=1.3897,\
+    \ G_loss=0.6878\n2025-08-24 13:06:46 | INFO     | __main__:train_gan:150 - GAN\
+    \ Epoch 40: D_loss=1.3822, G_loss=0.6997\n2025-08-24 13:06:50 | INFO     | __main__:train_gan:150\
+    \ - GAN Epoch 60: D_loss=1.3856, G_loss=0.6840\n2025-08-24 13:06:53 | INFO   \
+    \  | __main__:train_gan:150 - GAN Epoch 80: D_loss=1.3895, G_loss=0.7021\n2025-08-24\
+    \ 13:06:57 | INFO     | __main__:main:334 - Training hedger...\n2025-08-24 13:06:57\
+    \ | INFO     | __main__:train_hedger:154 - Training Hedger...\n2025-08-24 13:06:57\
+    \ | INFO     | __main__:train_hedger:217 - Hedger Episode 0: Avg Reward = 1.1109\n\
+    2025-08-24 13:07:00 | INFO     | __main__:train_hedger:217 - Hedger Episode 100:\
+    \ Avg Reward = 0.4780\n2025-08-24 13:07:04 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 200: Avg Reward = -2.9570\n2025-08-24 13:07:07 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 300: Avg Reward = 1.6398\n2025-08-24\
+    \ 13:07:10 | INFO     | __main__:train_hedger:217 - Hedger Episode 400: Avg Reward\
+    \ = 10.1097\n2025-08-24 13:07:14 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 500: Avg Reward = 3.4496\n2025-08-24 13:07:17 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 600: Avg Reward = 7.4203\n2025-08-24 13:07:21 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 700: Avg Reward = -0.2684\n2025-08-24\
+    \ 13:07:24 | INFO     | __main__:train_hedger:217 - Hedger Episode 800: Avg Reward\
+    \ = 12.0699\n2025-08-24 13:07:28 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 900: Avg Reward = 4.5900\n2025-08-24 13:07:31 | INFO     | __main__:main:338\
+    \ - Creating training curves...\n2025-08-24 13:07:32 | INFO     | src.deephedge.utils.logger:log_experiment_end:189\
+    \ - ============================================================\n2025-08-24 13:07:32\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:190 - EXPERIMENT\
+    \ COMPLETED\n2025-08-24 13:07:32 | INFO     | src.deephedge.utils.logger:log_experiment_end:191\
+    \ - ============================================================\n2025-08-24 13:07:32\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:192 - Duration: 62.50\
+    \ seconds\n2025-08-24 13:07:32 | INFO     | src.deephedge.utils.logger:log_experiment_end:195\
+    \ - Final Metrics:\n2025-08-24 13:07:32 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   gan_metrics_count: 100\n2025-08-24 13:07:32 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   hedger_metrics_count: 1000\n2025-08-24 13:07:32 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   evaluation_periods: 0\n2025-08-24 13:07:32 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_d_loss: 1.378698706626892\n2025-08-24 13:07:32 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_g_loss: 0.6989256143569946\n2025-08-24 13:07:32 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_hedger_reward: 5.995246506136287\n2025-08-24 13:07:32 | INFO     |\
+    \ src.deephedge.utils.logger:log_experiment_end:197 -   final_hedger_cvar: 78.44711605342412\n\
+    2025-08-24 13:07:32 | INFO     | src.deephedge.utils.logger:log_experiment_end:199\
+    \ - ============================================================\n2025-08-24 13:07:32\
+    \ | INFO     | __main__:main:356 - Training completed!\n"
+- command: python -m src.deephedge.train "model=c_dyn" "environment.transaction_cost=0.001"
+    "data.resample_freq=1T" "experiment.seed=42" "hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc10bps_freq1min_cvar95"
+  end_time: '2025-08-24T13:08:43.207117'
+  exit_code: 0
+  overrides:
+  - model=c_dyn
+  - environment.transaction_cost=0.001
+  - data.resample_freq=1T
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc10bps_freq1min_cvar95
+  run_id: c_dyn_tc10bps_freq1min_cvar95
+  start_time: '2025-08-24T13:07:32.545302'
+  status: completed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\n"
+  stdout: "2025-08-24 13:07:35 | INFO     | src.deephedge.utils.logger:log_experiment_start:100\
+    \ - ============================================================\n2025-08-24 13:07:35\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:101 - EXPERIMENT\
+    \ START\n2025-08-24 13:07:35 | INFO     | src.deephedge.utils.logger:log_experiment_start:102\
+    \ - ============================================================\n2025-08-24 13:07:35\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:105 - Experiment\
+    \ Name: gan_vs_gbm_deep_hedging\n2025-08-24 13:07:35 | INFO     | src.deephedge.utils.logger:log_experiment_start:106\
+    \ - Seed: 42\n2025-08-24 13:07:35 | INFO     | src.deephedge.utils.logger:log_experiment_start:107\
+    \ - Device: cuda\n2025-08-24 13:07:35 | INFO     | src.deephedge.utils.logger:log_experiment_start:112\
+    \ - Git Commit SHA: 6ada3f08649a1048a43a4a647a6008725452d260\n2025-08-24 13:07:35\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:113 - Docker Image\
+    \ Hash: not-docker\n2025-08-24 13:07:35 | INFO     | src.deephedge.utils.logger:log_experiment_start:119\
+    \ - Config Hash: b372339e76a35dc8f9be4458e3cb63dd\n2025-08-24 13:07:35 | INFO\
+    \     | src.deephedge.utils.logger:log_experiment_start:130 - CUDA not available,\
+    \ using CPU\n2025-08-24 13:07:35 | INFO     | src.deephedge.utils.logger:log_experiment_start:133\
+    \ - Deterministic Mode: True\n2025-08-24 13:07:35 | INFO     | src.deephedge.utils.logger:log_experiment_start:134\
+    \ - CUDA Deterministic: True\n2025-08-24 13:07:35 | INFO     | src.deephedge.utils.logger:log_experiment_start:136\
+    \ - ============================================================\n\U0001F50D Verifying\
+    \ deterministic behavior...\n\U0001F3B2 PyTorch deterministic: True\n\U0001F3B2\
+    \ NumPy deterministic: True\n\U0001F3B2 Python random deterministic: True\n\U0001F512\
+    \ Overall deterministic: True\nWarning: Could not initialize W&B: Key 'to_container'\
+    \ is not in struct\n    full_key: to_container\n    object_type=dict\n2025-08-24\
+    \ 13:07:35 | INFO     | __main__:main:315 - Loading market data...\nFetching daily\
+    \ data for SPY from 2015-01-01 to 2025-01-01...\n\n[*********************100%***********************]\
+    \  1 of 1 completed\n\n1 Failed download:\n- SPY: No timezone found, symbol may\
+    \ be delisted\nError fetching or generating data: No daily data fetched. Check\
+    \ symbol and date range.\nUsing fully synthetic data for demonstration...\n2025-08-24\
+    \ 13:07:45 | INFO     | __main__:main:330 - Training GAN...\n2025-08-24 13:07:45\
+    \ | INFO     | __main__:train_gan:52 - Training GAN...\n2025-08-24 13:07:45 |\
+    \ INFO     | __main__:train_gan:150 - GAN Epoch 0: D_loss=1.3876, G_loss=0.6842\n\
+    2025-08-24 13:07:49 | INFO     | __main__:train_gan:150 - GAN Epoch 20: D_loss=1.3897,\
+    \ G_loss=0.6878\n2025-08-24 13:07:52 | INFO     | __main__:train_gan:150 - GAN\
+    \ Epoch 40: D_loss=1.3822, G_loss=0.6997\n2025-08-24 13:07:56 | INFO     | __main__:train_gan:150\
+    \ - GAN Epoch 60: D_loss=1.3856, G_loss=0.6840\n2025-08-24 13:08:00 | INFO   \
+    \  | __main__:train_gan:150 - GAN Epoch 80: D_loss=1.3895, G_loss=0.7021\n2025-08-24\
+    \ 13:08:04 | INFO     | __main__:main:334 - Training hedger...\n2025-08-24 13:08:04\
+    \ | INFO     | __main__:train_hedger:154 - Training Hedger...\n2025-08-24 13:08:04\
+    \ | INFO     | __main__:train_hedger:217 - Hedger Episode 0: Avg Reward = 1.2457\n\
+    2025-08-24 13:08:08 | INFO     | __main__:train_hedger:217 - Hedger Episode 100:\
+    \ Avg Reward = -3.1312\n2025-08-24 13:08:11 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 200: Avg Reward = 0.9738\n2025-08-24 13:08:15 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 300: Avg Reward = 10.3180\n2025-08-24\
+    \ 13:08:19 | INFO     | __main__:train_hedger:217 - Hedger Episode 400: Avg Reward\
+    \ = 6.7132\n2025-08-24 13:08:23 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 500: Avg Reward = 6.3185\n2025-08-24 13:08:26 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 600: Avg Reward = 10.8030\n2025-08-24 13:08:30 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 700: Avg Reward = 12.0396\n2025-08-24\
+    \ 13:08:34 | INFO     | __main__:train_hedger:217 - Hedger Episode 800: Avg Reward\
+    \ = 11.4576\n2025-08-24 13:08:38 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 900: Avg Reward = 15.6838\n2025-08-24 13:08:42 | INFO     | __main__:main:338\
+    \ - Creating training curves...\n2025-08-24 13:08:42 | INFO     | src.deephedge.utils.logger:log_experiment_end:189\
+    \ - ============================================================\n2025-08-24 13:08:42\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:190 - EXPERIMENT\
+    \ COMPLETED\n2025-08-24 13:08:42 | INFO     | src.deephedge.utils.logger:log_experiment_end:191\
+    \ - ============================================================\n2025-08-24 13:08:42\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:192 - Duration: 67.60\
+    \ seconds\n2025-08-24 13:08:42 | INFO     | src.deephedge.utils.logger:log_experiment_end:195\
+    \ - Final Metrics:\n2025-08-24 13:08:42 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   gan_metrics_count: 100\n2025-08-24 13:08:42 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   hedger_metrics_count: 1000\n2025-08-24 13:08:42 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   evaluation_periods: 0\n2025-08-24 13:08:42 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_d_loss: 1.378698706626892\n2025-08-24 13:08:42 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_g_loss: 0.6989256143569946\n2025-08-24 13:08:42 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_hedger_reward: 11.04684269396771\n2025-08-24 13:08:42 | INFO     |\
+    \ src.deephedge.utils.logger:log_experiment_end:197 -   final_hedger_cvar: 119.61375632116523\n\
+    2025-08-24 13:08:42 | INFO     | src.deephedge.utils.logger:log_experiment_end:199\
+    \ - ============================================================\n2025-08-24 13:08:42\
+    \ | INFO     | __main__:main:356 - Training completed!\n"
+- command: python -m src.deephedge.train "model=c_dyn" "environment.transaction_cost=0.001"
+    "data.resample_freq=8T" "experiment.seed=42" "hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc10bps_freq8min_cvar95"
+  end_time: '2025-08-24T13:09:54.485860'
+  exit_code: 0
+  overrides:
+  - model=c_dyn
+  - environment.transaction_cost=0.001
+  - data.resample_freq=8T
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc10bps_freq8min_cvar95
+  run_id: c_dyn_tc10bps_freq8min_cvar95
+  start_time: '2025-08-24T13:08:43.207329'
+  status: completed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\n"
+  stdout: "2025-08-24 13:08:46 | INFO     | src.deephedge.utils.logger:log_experiment_start:100\
+    \ - ============================================================\n2025-08-24 13:08:46\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:101 - EXPERIMENT\
+    \ START\n2025-08-24 13:08:46 | INFO     | src.deephedge.utils.logger:log_experiment_start:102\
+    \ - ============================================================\n2025-08-24 13:08:46\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:105 - Experiment\
+    \ Name: gan_vs_gbm_deep_hedging\n2025-08-24 13:08:46 | INFO     | src.deephedge.utils.logger:log_experiment_start:106\
+    \ - Seed: 42\n2025-08-24 13:08:46 | INFO     | src.deephedge.utils.logger:log_experiment_start:107\
+    \ - Device: cuda\n2025-08-24 13:08:46 | INFO     | src.deephedge.utils.logger:log_experiment_start:112\
+    \ - Git Commit SHA: 6ada3f08649a1048a43a4a647a6008725452d260\n2025-08-24 13:08:46\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:113 - Docker Image\
+    \ Hash: not-docker\n2025-08-24 13:08:46 | INFO     | src.deephedge.utils.logger:log_experiment_start:119\
+    \ - Config Hash: 3decd62db8041ba98fdc343047f35362\n2025-08-24 13:08:46 | INFO\
+    \     | src.deephedge.utils.logger:log_experiment_start:130 - CUDA not available,\
+    \ using CPU\n2025-08-24 13:08:46 | INFO     | src.deephedge.utils.logger:log_experiment_start:133\
+    \ - Deterministic Mode: True\n2025-08-24 13:08:46 | INFO     | src.deephedge.utils.logger:log_experiment_start:134\
+    \ - CUDA Deterministic: True\n2025-08-24 13:08:46 | INFO     | src.deephedge.utils.logger:log_experiment_start:136\
+    \ - ============================================================\n\U0001F50D Verifying\
+    \ deterministic behavior...\n\U0001F3B2 PyTorch deterministic: True\n\U0001F3B2\
+    \ NumPy deterministic: True\n\U0001F3B2 Python random deterministic: True\n\U0001F512\
+    \ Overall deterministic: True\nWarning: Could not initialize W&B: Key 'to_container'\
+    \ is not in struct\n    full_key: to_container\n    object_type=dict\n2025-08-24\
+    \ 13:08:46 | INFO     | __main__:main:315 - Loading market data...\nFetching daily\
+    \ data for SPY from 2015-01-01 to 2025-01-01...\n\n[*********************100%***********************]\
+    \  1 of 1 completed\n\n1 Failed download:\n- SPY: No timezone found, symbol may\
+    \ be delisted\nError fetching or generating data: No daily data fetched. Check\
+    \ symbol and date range.\nUsing fully synthetic data for demonstration...\n2025-08-24\
+    \ 13:08:56 | INFO     | __main__:main:330 - Training GAN...\n2025-08-24 13:08:56\
+    \ | INFO     | __main__:train_gan:52 - Training GAN...\n2025-08-24 13:08:56 |\
+    \ INFO     | __main__:train_gan:150 - GAN Epoch 0: D_loss=1.3876, G_loss=0.6842\n\
+    2025-08-24 13:09:00 | INFO     | __main__:train_gan:150 - GAN Epoch 20: D_loss=1.3897,\
+    \ G_loss=0.6878\n2025-08-24 13:09:03 | INFO     | __main__:train_gan:150 - GAN\
+    \ Epoch 40: D_loss=1.3822, G_loss=0.6997\n2025-08-24 13:09:07 | INFO     | __main__:train_gan:150\
+    \ - GAN Epoch 60: D_loss=1.3856, G_loss=0.6840\n2025-08-24 13:09:11 | INFO   \
+    \  | __main__:train_gan:150 - GAN Epoch 80: D_loss=1.3895, G_loss=0.7021\n2025-08-24\
+    \ 13:09:14 | INFO     | __main__:main:334 - Training hedger...\n2025-08-24 13:09:14\
+    \ | INFO     | __main__:train_hedger:154 - Training Hedger...\n2025-08-24 13:09:14\
+    \ | INFO     | __main__:train_hedger:217 - Hedger Episode 0: Avg Reward = 1.2457\n\
+    2025-08-24 13:09:18 | INFO     | __main__:train_hedger:217 - Hedger Episode 100:\
+    \ Avg Reward = -3.1312\n2025-08-24 13:09:22 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 200: Avg Reward = 0.9738\n2025-08-24 13:09:26 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 300: Avg Reward = 10.3180\n2025-08-24\
+    \ 13:09:30 | INFO     | __main__:train_hedger:217 - Hedger Episode 400: Avg Reward\
+    \ = 6.7132\n2025-08-24 13:09:34 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 500: Avg Reward = 6.3185\n2025-08-24 13:09:37 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 600: Avg Reward = 10.8030\n2025-08-24 13:09:41 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 700: Avg Reward = 12.0396\n2025-08-24\
+    \ 13:09:45 | INFO     | __main__:train_hedger:217 - Hedger Episode 800: Avg Reward\
+    \ = 11.4576\n2025-08-24 13:09:49 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 900: Avg Reward = 15.6838\n2025-08-24 13:09:53 | INFO     | __main__:main:338\
+    \ - Creating training curves...\n2025-08-24 13:09:54 | INFO     | src.deephedge.utils.logger:log_experiment_end:189\
+    \ - ============================================================\n2025-08-24 13:09:54\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:190 - EXPERIMENT\
+    \ COMPLETED\n2025-08-24 13:09:54 | INFO     | src.deephedge.utils.logger:log_experiment_end:191\
+    \ - ============================================================\n2025-08-24 13:09:54\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:192 - Duration: 67.98\
+    \ seconds\n2025-08-24 13:09:54 | INFO     | src.deephedge.utils.logger:log_experiment_end:195\
+    \ - Final Metrics:\n2025-08-24 13:09:54 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   gan_metrics_count: 100\n2025-08-24 13:09:54 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   hedger_metrics_count: 1000\n2025-08-24 13:09:54 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   evaluation_periods: 0\n2025-08-24 13:09:54 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_d_loss: 1.378698706626892\n2025-08-24 13:09:54 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_g_loss: 0.6989256143569946\n2025-08-24 13:09:54 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_hedger_reward: 11.04684269396771\n2025-08-24 13:09:54 | INFO     |\
+    \ src.deephedge.utils.logger:log_experiment_end:197 -   final_hedger_cvar: 119.61375632116523\n\
+    2025-08-24 13:09:54 | INFO     | src.deephedge.utils.logger:log_experiment_end:199\
+    \ - ============================================================\n2025-08-24 13:09:54\
+    \ | INFO     | __main__:main:356 - Training completed!\n"
+- command: python -m src.deephedge.train "model=c_dyn" "environment.transaction_cost=0.001"
+    "data.resample_freq=30T" "experiment.seed=42" "hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc10bps_freq30min_cvar95"
+  end_time: '2025-08-24T13:11:05.420174'
+  exit_code: 0
+  overrides:
+  - model=c_dyn
+  - environment.transaction_cost=0.001
+  - data.resample_freq=30T
+  - experiment.seed=42
+  - hydra.run.dir=runs/phase1_test_cdyn/c_dyn_tc10bps_freq30min_cvar95
+  run_id: c_dyn_tc10bps_freq30min_cvar95
+  start_time: '2025-08-24T13:09:54.486029'
+  status: completed
+  stderr: "/Users/ray/Downloads/Documents/Developer/Model/CLLM-DH/venv/lib/python3.9/site-packages/urllib3/__init__.py:35:\
+    \ NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl'\
+    \ module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n\
+    \  warnings.warn(\n"
+  stdout: "2025-08-24 13:09:57 | INFO     | src.deephedge.utils.logger:log_experiment_start:100\
+    \ - ============================================================\n2025-08-24 13:09:57\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:101 - EXPERIMENT\
+    \ START\n2025-08-24 13:09:57 | INFO     | src.deephedge.utils.logger:log_experiment_start:102\
+    \ - ============================================================\n2025-08-24 13:09:57\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:105 - Experiment\
+    \ Name: gan_vs_gbm_deep_hedging\n2025-08-24 13:09:57 | INFO     | src.deephedge.utils.logger:log_experiment_start:106\
+    \ - Seed: 42\n2025-08-24 13:09:57 | INFO     | src.deephedge.utils.logger:log_experiment_start:107\
+    \ - Device: cuda\n2025-08-24 13:09:57 | INFO     | src.deephedge.utils.logger:log_experiment_start:112\
+    \ - Git Commit SHA: 6ada3f08649a1048a43a4a647a6008725452d260\n2025-08-24 13:09:57\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_start:113 - Docker Image\
+    \ Hash: not-docker\n2025-08-24 13:09:57 | INFO     | src.deephedge.utils.logger:log_experiment_start:119\
+    \ - Config Hash: 6ccb592ab8de31c7e45552f9a0cd8ceb\n2025-08-24 13:09:57 | INFO\
+    \     | src.deephedge.utils.logger:log_experiment_start:130 - CUDA not available,\
+    \ using CPU\n2025-08-24 13:09:57 | INFO     | src.deephedge.utils.logger:log_experiment_start:133\
+    \ - Deterministic Mode: True\n2025-08-24 13:09:57 | INFO     | src.deephedge.utils.logger:log_experiment_start:134\
+    \ - CUDA Deterministic: True\n2025-08-24 13:09:57 | INFO     | src.deephedge.utils.logger:log_experiment_start:136\
+    \ - ============================================================\n\U0001F50D Verifying\
+    \ deterministic behavior...\n\U0001F3B2 PyTorch deterministic: True\n\U0001F3B2\
+    \ NumPy deterministic: True\n\U0001F3B2 Python random deterministic: True\n\U0001F512\
+    \ Overall deterministic: True\nWarning: Could not initialize W&B: Key 'to_container'\
+    \ is not in struct\n    full_key: to_container\n    object_type=dict\n2025-08-24\
+    \ 13:09:57 | INFO     | __main__:main:315 - Loading market data...\nFetching daily\
+    \ data for SPY from 2015-01-01 to 2025-01-01...\n\n[*********************100%***********************]\
+    \  1 of 1 completed\n\n1 Failed download:\n- SPY: No timezone found, symbol may\
+    \ be delisted\nError fetching or generating data: No daily data fetched. Check\
+    \ symbol and date range.\nUsing fully synthetic data for demonstration...\n2025-08-24\
+    \ 13:10:07 | INFO     | __main__:main:330 - Training GAN...\n2025-08-24 13:10:07\
+    \ | INFO     | __main__:train_gan:52 - Training GAN...\n2025-08-24 13:10:07 |\
+    \ INFO     | __main__:train_gan:150 - GAN Epoch 0: D_loss=1.3876, G_loss=0.6842\n\
+    2025-08-24 13:10:11 | INFO     | __main__:train_gan:150 - GAN Epoch 20: D_loss=1.3897,\
+    \ G_loss=0.6878\n2025-08-24 13:10:14 | INFO     | __main__:train_gan:150 - GAN\
+    \ Epoch 40: D_loss=1.3822, G_loss=0.6997\n2025-08-24 13:10:18 | INFO     | __main__:train_gan:150\
+    \ - GAN Epoch 60: D_loss=1.3856, G_loss=0.6840\n2025-08-24 13:10:22 | INFO   \
+    \  | __main__:train_gan:150 - GAN Epoch 80: D_loss=1.3895, G_loss=0.7021\n2025-08-24\
+    \ 13:10:25 | INFO     | __main__:main:334 - Training hedger...\n2025-08-24 13:10:25\
+    \ | INFO     | __main__:train_hedger:154 - Training Hedger...\n2025-08-24 13:10:25\
+    \ | INFO     | __main__:train_hedger:217 - Hedger Episode 0: Avg Reward = 1.2457\n\
+    2025-08-24 13:10:29 | INFO     | __main__:train_hedger:217 - Hedger Episode 100:\
+    \ Avg Reward = -3.1312\n2025-08-24 13:10:33 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 200: Avg Reward = 0.9738\n2025-08-24 13:10:37 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 300: Avg Reward = 10.3180\n2025-08-24\
+    \ 13:10:41 | INFO     | __main__:train_hedger:217 - Hedger Episode 400: Avg Reward\
+    \ = 6.7132\n2025-08-24 13:10:45 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 500: Avg Reward = 6.3185\n2025-08-24 13:10:48 | INFO     | __main__:train_hedger:217\
+    \ - Hedger Episode 600: Avg Reward = 10.8030\n2025-08-24 13:10:52 | INFO     |\
+    \ __main__:train_hedger:217 - Hedger Episode 700: Avg Reward = 12.0396\n2025-08-24\
+    \ 13:10:56 | INFO     | __main__:train_hedger:217 - Hedger Episode 800: Avg Reward\
+    \ = 11.4576\n2025-08-24 13:11:00 | INFO     | __main__:train_hedger:217 - Hedger\
+    \ Episode 900: Avg Reward = 15.6838\n2025-08-24 13:11:04 | INFO     | __main__:main:338\
+    \ - Creating training curves...\n2025-08-24 13:11:05 | INFO     | src.deephedge.utils.logger:log_experiment_end:189\
+    \ - ============================================================\n2025-08-24 13:11:05\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:190 - EXPERIMENT\
+    \ COMPLETED\n2025-08-24 13:11:05 | INFO     | src.deephedge.utils.logger:log_experiment_end:191\
+    \ - ============================================================\n2025-08-24 13:11:05\
+    \ | INFO     | src.deephedge.utils.logger:log_experiment_end:192 - Duration: 67.68\
+    \ seconds\n2025-08-24 13:11:05 | INFO     | src.deephedge.utils.logger:log_experiment_end:195\
+    \ - Final Metrics:\n2025-08-24 13:11:05 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   gan_metrics_count: 100\n2025-08-24 13:11:05 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   hedger_metrics_count: 1000\n2025-08-24 13:11:05 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   evaluation_periods: 0\n2025-08-24 13:11:05 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_d_loss: 1.378698706626892\n2025-08-24 13:11:05 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_gan_g_loss: 0.6989256143569946\n2025-08-24 13:11:05 | INFO     | src.deephedge.utils.logger:log_experiment_end:197\
+    \ -   final_hedger_reward: 11.04684269396771\n2025-08-24 13:11:05 | INFO     |\
+    \ src.deephedge.utils.logger:log_experiment_end:197 -   final_hedger_cvar: 119.61375632116523\n\
+    2025-08-24 13:11:05 | INFO     | src.deephedge.utils.logger:log_experiment_end:199\
+    \ - ============================================================\n2025-08-24 13:11:05\
+    \ | INFO     | __main__:main:356 - Training completed!\n"
+matrix_config:
+  frequencies:
+  - 1
+  - 8
+  - 30
+  model_variants:
+  - c_static
+  - c_dyn
+  - rl_gbm
+  - rl_gan
+  reward_functions:
+  - cvar95
+  - mean_variance
+  tc_levels:
+  - 0
+  - 2
+  - 10
+phase: 1.5_baseline_matrix
+results:
+  failed: 0
+  success_rate: 1.0
+  successful: 9
+  total_experiments: 9

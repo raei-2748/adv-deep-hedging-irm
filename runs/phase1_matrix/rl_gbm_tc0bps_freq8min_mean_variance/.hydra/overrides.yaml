@@ -1,0 +1,6 @@
+- model=rl_gbm
+- environment.transaction_cost=0.0
+- data.resample_freq=8T
+- training.hedger.reward_type=mean_variance
+- training.hedger.risk_aversion=1.0
+- experiment.seed=42

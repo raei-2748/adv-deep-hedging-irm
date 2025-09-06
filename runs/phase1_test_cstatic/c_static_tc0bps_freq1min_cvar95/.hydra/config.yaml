@@ -1,0 +1,98 @@
+experiment:
+  name: gan_vs_gbm_deep_hedging
+  seed: 42
+  device: cuda
+data:
+  source: synthetic
+  path: data/raw/sp500.csv
+  start_date: '2015-01-01'
+  end_date: '2025-01-01'
+  ticker: SPY
+  interval: 1d
+  resample_freq: 1T
+  splits:
+    train:
+    - start: '2015-01-01'
+      end: '2017-12-31'
+    - start: '2019-02-01'
+      end: '2019-11-30'
+    - start: '2021-01-01'
+      end: '2022-12-31'
+    valid:
+    - start: '2018-01-01'
+      end: '2018-06-30'
+    - start: '2020-06-01'
+      end: '2020-12-31'
+    test:
+    - name: covid19
+      start: '2020-02-15'
+      end: '2020-04-30'
+    - name: volmageddon
+      start: '2018-01-15'
+      end: '2018-02-28'
+    - name: qt18
+      start: '2018-10-01'
+      end: '2018-12-31'
+    - name: svb23
+      start: '2023-03-01'
+      end: '2023-03-31'
+    - name: hikes22
+      start: '2022-06-01'
+      end: '2022-07-31'
+model:
+  gan:
+    input_dim: 10
+    hidden_dim: 128
+    sequence_length: 60
+    num_layers: 2
+    dropout: 0.2
+    latent_dim: 32
+    adv_lambda: 0.7
+    lr_generator: 0.0002
+    lr_discriminator: 0.0002
+  hedger:
+    state_dim: 10
+    hidden_dim: 128
+    sequence_length: 60
+    num_layers: 2
+    dropout: 0.2
+    lr: 0.0003
+    entropy_coef: 0.01
+  name: c_static
+  type: baseline
+  pricer:
+    type: bs
+    vol_mode: constant
+    sigma: 0.2
+training:
+  gan:
+    num_epochs: 100
+    batch_size: 64
+    cvar_alpha: 0.95
+  hedger:
+    num_episodes: 1000
+    lr: 0.001
+    transaction_cost: 0.0001
+environment:
+  initial_capital: 100000
+  transaction_cost: 0.0
+  episode_length: 60
+  position_scale: 1000
+risk:
+  cvar_confidence: 0.95
+  risk_free_rate: 0.02
+  volatility_window: 20
+logging:
+  log_level: INFO
+  wandb_project: deep_hedging
+  log_dir: runs
+  save_models: true
+  plot_results: true
+  plot_dpi: 300
+deterministic:
+  torch_seed: 42
+  numpy_seed: 42
+  python_seed: 42
+  deterministic_mode: true
+  cuda_deterministic: true
+  cuda_benchmark: false

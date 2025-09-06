@@ -1,0 +1,4 @@
+- model=c_dyn
+- environment.transaction_cost=0.001
+- data.resample_freq=1T
+- experiment.seed=42

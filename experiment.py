@@ -22,7 +22,8 @@ from datetime import datetime
 # Import from organized modules
 from src.deephedge.data.dataloader import DataManager
 from src.deephedge.models.gan import GANGenerator, GANDiscriminator
-from src.deephedge.models.actor_critic import ActorCriticHedger, SimpleDeltaHedger
+from src.deephedge.models.actor_critic import ActorCriticHedger
+from src.deephedge.models.hedge_delta import SimpleDeltaHedger
 from src.deephedge.envs.deep_hedging_env import DeepHedgingEnvironment
 from src.deephedge.utils.seed import set_seed
 from src.deephedge.utils.logger import setup_logger
