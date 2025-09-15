@@ -1,0 +1,26 @@
+experiment:
+  name: firm_baseline
+  seed: 123
+
+training:
+  epochs: 5
+  batch_size: 64
+  lr: 1e-3
+  irm_lambda: 1.0
+
+data:
+  start_date: "2015-01-01"
+  end_date: "2025-01-01"
+  ticker: "SPY"
+  interval: "1d"
+  sequence_length: 60
+  vix_symbol: "^VIX"
+
+regimes:
+  method: "volatility_percentile"  # or "vix_threshold"
+  low_pct: 0.3
+  high_pct: 0.7
+
+logging:
+  out_dir: "experiments/firm/week1/exp_001_irm_1.0"
+
