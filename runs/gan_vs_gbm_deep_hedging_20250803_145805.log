@@ -1,8 +1,0 @@
-2025-08-03 14:58:05 | INFO     | src.deephedge.utils.logger:log_experiment_start:99 - ============================================================
-2025-08-03 14:58:05 | INFO     | src.deephedge.utils.logger:log_experiment_start:100 - EXPERIMENT START
-2025-08-03 14:58:05 | INFO     | src.deephedge.utils.logger:log_experiment_start:101 - ============================================================
-2025-08-03 14:58:05 | INFO     | src.deephedge.utils.logger:log_experiment_start:104 - Experiment Name: gan_vs_gbm_deep_hedging
-2025-08-03 14:58:05 | INFO     | src.deephedge.utils.logger:log_experiment_start:105 - Seed: 42
-2025-08-03 14:58:05 | INFO     | src.deephedge.utils.logger:log_experiment_start:106 - Device: cuda
-2025-08-03 14:58:05 | INFO     | src.deephedge.utils.logger:log_experiment_start:111 - Git Commit SHA: 3c3ce0448ffc2da52cb2b565b1064277a45eff31
-2025-08-03 14:58:05 | INFO     | src.deephedge.utils.logger:log_experiment_start:112 - Docker Image Hash: not-docker

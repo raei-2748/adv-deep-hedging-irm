@@ -3,7 +3,6 @@ Performance metrics for deep hedging experiments
 """
 
 import numpy as np
-import pandas as pd
 from scipy import stats
 
 

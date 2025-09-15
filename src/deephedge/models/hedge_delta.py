@@ -1,6 +1,4 @@
 
-import torch
-import torch.nn as nn
 
 class SimpleDeltaHedger:
     """Simple delta-hedging strategy for comparison"""

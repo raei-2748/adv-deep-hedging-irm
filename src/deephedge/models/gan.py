@@ -2,7 +2,6 @@
 GAN models for generating worst-case price paths
 """
 
-import torch
 import torch.nn as nn
 
 

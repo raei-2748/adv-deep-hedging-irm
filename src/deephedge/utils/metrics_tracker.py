@@ -5,10 +5,7 @@ Metrics tracking utilities for deep hedging experiments
 import wandb
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
 from pathlib import Path
-from typing import Dict, List, Optional
-import torch
 
 
 class MetricsTracker:

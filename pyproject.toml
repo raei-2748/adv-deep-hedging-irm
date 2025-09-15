@@ -4,9 +4,9 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "deep-hedging"
+name = "firm"
 version = "0.1.0"
-description = "Deep Hedging with GAN-Generated Worst-Case Paths"
+description = "FIRM: Framework for Invariant Risk Minimalization for deep hedging"
 authors = [{name = "Deep Hedging Team"}]
 readme = "README.md"
 requires-python = ">=3.8"

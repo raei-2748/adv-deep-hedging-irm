@@ -1,3 +1,0 @@
-- model=c_static
-- environment.transaction_cost=0.001
-- data.resample_freq=30T
